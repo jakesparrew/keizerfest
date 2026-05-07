@@ -159,21 +159,21 @@
     <main class="flex-1">
 
       <!-- CROWDFUNDING PROGRESS BAR -->
-      <section id="crowdfunding" class="px-6 lg:px-12 py-8 md:py-10 border-b border-black bg-[var(--cream)]" hidden>
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-6 lg:gap-12 items-start">
+      <section id="crowdfunding" class="px-6 lg:px-12 py-8 md:py-10 border-b border-black bg-[var(--cream)]" data-state="loading">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div class="lg:col-span-7">
             <div class="flex items-baseline justify-between gap-4 mb-3">
               <p class="text-xs font-bold tracking-[0.2em] uppercase" data-i18n="cf_label">STEUN KEIZERFEST</p>
-              <p class="text-xs font-bold tracking-[0.2em] uppercase opacity-60"><span id="cf-pct">0</span>% <span data-i18n="cf_of">VAN HET DOEL</span></p>
+              <p class="text-xs font-bold tracking-[0.2em] uppercase opacity-60"><span id="cf-pct">—</span>% <span data-i18n="cf_of">VAN HET DOEL</span></p>
             </div>
             <div class="display text-4xl md:text-6xl leading-none mb-4 flex items-baseline gap-3 flex-wrap">
-              <span id="cf-gathered">&euro;0</span>
-              <span class="opacity-40 text-2xl md:text-4xl"><span data-i18n="cf_of_short">/</span> <span id="cf-goal">&euro;0</span></span>
+              <span id="cf-gathered">&euro;—</span>
+              <span class="opacity-40 text-2xl md:text-4xl"><span data-i18n="cf_of_short">/</span> <span id="cf-goal">&euro;—</span></span>
             </div>
             <div class="w-full h-3 bg-black/10 overflow-hidden mb-4">
               <div id="cf-bar" class="h-full bg-[var(--ink)] transition-all duration-700" style="width: 0%"></div>
             </div>
-            <p class="text-xs uppercase tracking-widest opacity-60"><span id="cf-count">0</span> <span data-i18n="cf_contributors">bijdragers tot nu toe</span></p>
+            <p class="text-xs uppercase tracking-widest opacity-60"><span id="cf-count">—</span> <span data-i18n="cf_contributors">bijdragers tot nu toe</span></p>
           </div>
           <div class="lg:col-span-5">
             <div class="flex items-baseline justify-between gap-4 mb-3">
@@ -184,7 +184,9 @@
               </a>
             </div>
             <ol id="cf-top" class="space-y-2 text-sm md:text-base">
-              <li class="flex justify-between items-baseline opacity-50"><span data-i18n="cf_loading">Laden…</span></li>
+              <li class="flex justify-between items-baseline opacity-40 border-b border-black/15 pb-2"><span data-i18n="cf_loading">Live data wordt geladen&hellip;</span></li>
+              <li class="flex justify-between items-baseline opacity-30 border-b border-black/15 pb-2"><span class="font-medium">&mdash;</span><span class="font-semibold">&euro;&mdash;</span></li>
+              <li class="flex justify-between items-baseline opacity-20 border-b border-black/15 pb-2"><span class="font-medium">&mdash;</span><span class="font-semibold">&euro;&mdash;</span></li>
             </ol>
           </div>
         </div>
@@ -215,7 +217,7 @@
         <div class="max-w-5xl">
           <p class="text-xs font-bold tracking-[0.2em] uppercase mb-6" data-i18n="intro_label">WAT IS KEIZERFEST?</p>
           <p class="text-3xl md:text-5xl font-medium leading-tight mb-6" data-i18n="intro_main">Keizerfest is een gratis, driedaags stadsfestival in het Keizerpark in Gent — vier collectieven, &eacute;&eacute;n park, drie dagen muziek, sport, kunst en community.</p>
-          <p class="display text-2xl md:text-3xl mt-6" data-i18n-html="intro_outro">IEDEREEN IS WELKOM. ALLES IS GRATIS.</p>
+          <p class="display text-2xl md:text-3xl mt-6" data-i18n-html="intro_outro">IEDEREEN IS WELKOM.</p>
         </div>
       </section>
 
@@ -504,6 +506,13 @@
         map_heading: "KEIZERPARK<br>GENT",
         map_body: "Tussen de Schelde en de buurt van Gentbrugge. 10 minuten met de fiets vanaf Gent-Sint-Pieters of de Vooruit. Tram 4 stopt op 5 minuten wandelen.",
         map_cta: "OPEN IN GOOGLE MAPS",
+        cf_label: "STEUN KEIZERFEST",
+        cf_of: "VAN HET DOEL",
+        cf_of_short: "/",
+        cf_contributors: "bijdragers tot nu toe",
+        cf_top_label: "TOP STEUNERS",
+        cf_cta: "STEUN ONS",
+        cf_loading: "Live data wordt geladen…",
         nav_praktisch: "PRAKTISCH",
         nav_steun: "STEUN ONS",
         cta_steun_ons: "STEUN ONS",
@@ -516,7 +525,7 @@
         intro_label: "WAT IS KEIZERFEST?",
         intro_main: "Keizerfest is een gratis, driedaags stadsfestival in het Keizerpark in Gent, waar muziek, sport, kunst en community samenkomen.",
         intro_concepts: "Van urban cultuur en internationale acts tot yoga in het park, kinderanimatie en creatieve workshops. Met vier concepten — Back2Scratch, B*tch Don't Kill My Vibe, Wallhala en Wide Open — creëren we ruimte voor ontmoeting, expressie en talentontwikkeling.",
-        intro_outro: "IEDEREEN IS WELKOM.<br>ALLES IS GRATIS.",
+        intro_outro: "IEDEREEN IS WELKOM.",
         origin_label: "VANWAAR WE KOMEN",
         origin_heading: "DOOR EN<br>VOOR DE STAD",
         origin_p1: "Wat begon als een kleinschalige blockparty groeide uit tot een meerdaags stadsfestival dat jaarlijks duizenden mensen samenbrengt in het Keizerpark.",
@@ -606,6 +615,13 @@
         map_heading: "KEIZERPARK<br>GHENT",
         map_body: "Between the Scheldt and the Gentbrugge neighbourhood. 10 minutes by bike from Gent-Sint-Pieters or Vooruit. Tram 4 stops a 5-minute walk away.",
         map_cta: "OPEN IN GOOGLE MAPS",
+        cf_label: "SUPPORT KEIZERFEST",
+        cf_of: "OF THE GOAL",
+        cf_of_short: "/",
+        cf_contributors: "contributors so far",
+        cf_top_label: "TOP SUPPORTERS",
+        cf_cta: "SUPPORT US",
+        cf_loading: "Loading live data…",
         nav_praktisch: "PRACTICAL",
         nav_steun: "SUPPORT US",
         cta_steun_ons: "SUPPORT US",
@@ -618,7 +634,7 @@
         intro_label: "WHAT IS KEIZERFEST?",
         intro_main: "Keizerfest is a free, three-day city festival in Keizerpark, Ghent — where music, sport, art and community come together.",
         intro_concepts: "From urban culture and international acts to yoga in the park, kids' programmes and creative workshops. With four concepts — Back2Scratch, B*tch Don't Kill My Vibe, Wallhala and Wide Open — we make space for meeting, expression and talent.",
-        intro_outro: "EVERYONE IS WELCOME.<br>EVERYTHING IS FREE.",
+        intro_outro: "EVERYONE IS WELCOME.",
         origin_label: "WHERE WE COME FROM",
         origin_heading: "BY AND<br>FOR THE CITY",
         origin_p1: "What started as a small block party grew into a multi-day city festival that brings thousands of people together in Keizerpark every year.",
@@ -707,6 +723,13 @@
         map_heading: "KEIZERPARK<br>GAND",
         map_body: "Entre l'Escaut et le quartier de Gentbrugge. À 10 min à vélo de Gent-Sint-Pieters ou de la Vooruit. Tram 4 à 5 minutes à pied.",
         map_cta: "OUVRIR DANS GOOGLE MAPS",
+        cf_label: "SOUTIEN KEIZERFEST",
+        cf_of: "DE L'OBJECTIF",
+        cf_of_short: "/",
+        cf_contributors: "contributeurs jusqu'ici",
+        cf_top_label: "TOP CONTRIBUTEURS",
+        cf_cta: "SOUTENEZ-NOUS",
+        cf_loading: "Chargement des données en direct…",
         nav_praktisch: "INFOS PRATIQUES",
         nav_steun: "SOUTENEZ-NOUS",
         cta_steun_ons: "SOUTENEZ-NOUS",
@@ -719,7 +742,7 @@
         intro_label: "QU'EST-CE QUE KEIZERFEST ?",
         intro_main: "Keizerfest est un festival urbain gratuit de trois jours au Keizerpark à Gand, où la musique, le sport, l'art et la communauté se rencontrent.",
         intro_concepts: "De la culture urbaine et des artistes internationaux au yoga dans le parc, en passant par les ateliers créatifs et l'animation enfants. Avec quatre concepts — Back2Scratch, B*tch Don't Kill My Vibe, Wallhala et Wide Open — on crée un espace pour la rencontre, l'expression et les talents.",
-        intro_outro: "TOUT LE MONDE EST BIENVENU.<br>TOUT EST GRATUIT.",
+        intro_outro: "TOUT LE MONDE EST BIENVENU.",
         origin_label: "D'OÙ ON VIENT",
         origin_heading: "PAR ET<br>POUR LA VILLE",
         origin_p1: "Ce qui a commencé comme une petite block party est devenu un festival urbain de plusieurs jours qui rassemble chaque année des milliers de personnes au Keizerpark.",
@@ -843,6 +866,30 @@
       }
     }
 
+    async function tryFetchCrowdfunding(url) {
+      // The Supabase Edge Function gateway sometimes requires an Authorization
+      // header. Try the most permissive path first, then fall back through
+      // a few common patterns until one returns a usable JSON body.
+      const headerSets = [
+        { 'Accept': 'application/json' },
+        CROWDFUNDING.anonKey
+          ? { 'Accept': 'application/json', 'apikey': CROWDFUNDING.anonKey, 'Authorization': 'Bearer ' + CROWDFUNDING.anonKey }
+          : null,
+        { 'Accept': 'application/json', 'Authorization': 'Bearer ' + CROWDFUNDING.token, 'apikey': CROWDFUNDING.token },
+      ].filter(Boolean);
+      let lastErr;
+      for (const headers of headerSets) {
+        try {
+          const res = await fetch(url, { headers });
+          if (!res.ok) { lastErr = new Error('HTTP ' + res.status); continue; }
+          const raw = await res.json();
+          if (raw && raw.code && /UNAUTHORIZED/.test(raw.code)) { lastErr = new Error(raw.code); continue; }
+          return raw;
+        } catch (err) { lastErr = err; }
+      }
+      throw lastErr || new Error('crowdfunding fetch failed');
+    }
+
     async function loadCrowdfunding() {
       const section = document.getElementById('crowdfunding');
       if (!section) return;
@@ -850,14 +897,7 @@
         const url = new URL(CROWDFUNDING.url);
         url.searchParams.set('eventId', CROWDFUNDING.eventId);
         url.searchParams.set('token', CROWDFUNDING.token);
-        const headers = { 'Accept': 'application/json' };
-        if (CROWDFUNDING.anonKey) {
-          headers['apikey'] = CROWDFUNDING.anonKey;
-          headers['Authorization'] = 'Bearer ' + CROWDFUNDING.anonKey;
-        }
-        const res = await fetch(url.toString(), { headers });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const raw = await res.json();
+        const raw = await tryFetchCrowdfunding(url.toString());
         // Be lenient with response shape — accept several common field names.
         const data = raw.data || raw.event || raw;
         const goal = Number(data.goal ?? data.target ?? data.goalAmount ?? data.targetAmount ?? 0);
@@ -894,18 +934,15 @@
             list.appendChild(li);
           });
         }
-        section.hidden = false;
+        section.dataset.state = 'loaded';
       } catch (err) {
         console.warn('Crowdfunding API not available:', err.message);
-        // Section stays hidden.
+        section.dataset.state = 'error';
+        // UI stays in skeleton state — fills in once auth is configured server-side.
       }
     }
 
-    if (CROWDFUNDING.anonKey || /[?&]cf=force/.test(location.search)) {
-      loadCrowdfunding();
-    } else {
-      console.info('Crowdfunding section hidden — set CROWDFUNDING.anonKey to enable.');
-    }
+    loadCrowdfunding();
   </script>
 </body>
 </html>
