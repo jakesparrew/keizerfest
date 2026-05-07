@@ -17,8 +17,8 @@ const TARGETS = [
   },
   {
     name: 'banner-bdkmv.jpg',
-    src: 'C:/Users/gaeta/Downloads/[Library] BDKMV/timetable-340x175cm.png',
-    type: 'png',
+    src: 'C:/Users/gaeta/AppData/Local/Temp/timetable-340x175cm.pdf',
+    type: 'pdf',
   },
   {
     name: 'banner-wallhala.jpg',
