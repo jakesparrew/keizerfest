@@ -786,13 +786,13 @@
       btn.addEventListener('click', () => setLang(btn.dataset.lang));
     });
 
+    // Default language is Dutch. Only switch if user explicitly chose another via the toggle.
     let saved = null;
     try { saved = localStorage.getItem('keizerfest_lang'); } catch(e) {}
     if (saved && i18n[saved]) {
       setLang(saved);
     } else {
-      const browser = (navigator.language || 'nl').slice(0, 2).toLowerCase();
-      if (browser === 'en' || browser === 'fr') setLang(browser);
+      setLang('nl');
     }
   </script>
 </body>
