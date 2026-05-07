@@ -25,6 +25,7 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script src="https://ticketbalie.com/embed.v1.js" async></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -175,6 +176,10 @@
               <div id="cf-bar" class="h-full bg-[var(--ink)] transition-all duration-700" style="width: 0%"></div>
             </div>
             <p class="text-xs uppercase tracking-widest opacity-60"><span id="cf-count">—</span> <span data-i18n="cf_contributors">bijdragers tot nu toe</span> <span class="opacity-50">·</span> <a href="/waarom" class="underline underline-offset-2 hover:no-underline" data-i18n="cf_why_link">waarom steunen?</a></p>
+            <button type="button" onclick="openSupport()" class="hidden lg:inline-flex mt-6 items-center gap-3 px-5 py-3 bg-[var(--ink)] text-[var(--paper)] display text-lg tracking-wider hover:bg-[var(--ink)]/85 transition-colors">
+              <iconify-icon icon="lucide:heart"></iconify-icon>
+              <span data-i18n="cf_pay_now">DIRECT BIJDRAGEN</span>
+            </button>
           </div>
           <div class="lg:col-span-5">
             <div class="flex items-baseline justify-between gap-4 mb-3">
@@ -189,6 +194,10 @@
               <li class="flex justify-between items-baseline opacity-30 border-b border-black/15 pb-2"><span class="font-medium">&mdash;</span><span class="font-semibold">&euro;&mdash;</span></li>
               <li class="flex justify-between items-baseline opacity-20 border-b border-black/15 pb-2"><span class="font-medium">&mdash;</span><span class="font-semibold">&euro;&mdash;</span></li>
             </ol>
+            <button type="button" onclick="openSupport()" class="lg:hidden mt-6 w-full inline-flex items-center justify-center gap-3 px-5 py-3 bg-[var(--ink)] text-[var(--paper)] display text-lg tracking-wider hover:bg-[var(--ink)]/85 transition-colors">
+              <iconify-icon icon="lucide:heart"></iconify-icon>
+              <span data-i18n="cf_pay_now">DIRECT BIJDRAGEN</span>
+            </button>
           </div>
         </div>
       </section>
@@ -557,6 +566,7 @@
         cf_loading: "Live data wordt geladen…",
         cf_empty: "Wees de eerste om te steunen.",
         cf_why_link: "waarom steunen?",
+        cf_pay_now: "DIRECT BIJDRAGEN",
         contact_label: "CONTACT",
         contact_heading: "EEN VRAAG?<br>SCHRIJF ONS.",
         contact_body: "Pers, partners, vrijwilligers, programma — kort bericht, we lezen alles.",
@@ -677,6 +687,7 @@
         cf_loading: "Loading live data…",
         cf_empty: "Be the first to support us.",
         cf_why_link: "why support?",
+        cf_pay_now: "DONATE NOW",
         contact_label: "CONTACT",
         contact_heading: "GOT A QUESTION?<br>WRITE TO US.",
         contact_body: "Press, partners, volunteers, programme — short message, we read everything.",
@@ -796,6 +807,7 @@
         cf_loading: "Chargement des données en direct…",
         cf_empty: "Soyez le premier à nous soutenir.",
         cf_why_link: "pourquoi nous soutenir ?",
+        cf_pay_now: "CONTRIBUER",
         contact_label: "CONTACT",
         contact_heading: "UNE QUESTION ?<br>ÉCRIVEZ-NOUS.",
         contact_body: "Presse, partenaires, bénévoles, programme — un mot suffit, on lit tout.",
@@ -924,7 +936,25 @@
       url: 'https://rrabscqyndelsxlmfctq.supabase.co/functions/v1/public-crowdfunding-api',
       eventId: '1883ded2-e959-4696-b17a-f7b852da36ab',
       token: '1fffb3ae-57c3-4eba-ac21-feaeefe1b20b',
-      anonKey: ''
+      anonKey: '',
+      fallbackUrl: 'https://www.ticketbalie.com/keizerfest'
+    };
+
+    // Open the Ticketbalie support dialog. Falls back to the external page if
+    // embed.v1.js hasn't loaded yet (it's async) or fails to attach.
+    window.openSupport = function (amountCents) {
+      const opts = {
+        eventId: CROWDFUNDING.eventId,
+        token: CROWDFUNDING.token,
+        locale: (document.documentElement.lang || 'nl').toLowerCase(),
+        onComplete: () => { try { loadCrowdfunding(); } catch (e) {} },
+      };
+      if (typeof amountCents === 'number' && amountCents > 0) opts.amount = amountCents;
+      if (window.Ticketbalie && typeof window.Ticketbalie.openSupportDialog === 'function') {
+        window.Ticketbalie.openSupportDialog(opts);
+      } else {
+        window.open(CROWDFUNDING.fallbackUrl, '_blank', 'noopener');
+      }
     };
 
     function fmtMoney(amount, currency) {
