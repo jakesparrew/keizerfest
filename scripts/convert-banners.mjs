@@ -25,11 +25,15 @@ const TARGETS = [
     src: 'C:/Users/gaeta/Downloads/walhalla.pdf',
     type: 'pdf',
   },
+  {
+    name: 'banner-wide-open.jpg',
+    src: 'C:/Users/gaeta/Downloads/[Library] Wide Open.pdf',
+    type: 'pdf',
+  },
 ];
 
-async function getPdfPageBuffer(pdfPath) {
-  // pdf-to-img is async iterable — first page only
-  const document = await pdf(pdfPath, { scale: 2 });
+async function getPdfPageBuffer(pdfPath, scale = 2) {
+  const document = await pdf(pdfPath, { scale });
   for await (const page of document) {
     return page; // Buffer (PNG)
   }
@@ -41,7 +45,17 @@ async function process(target) {
   if (target.type === 'png') {
     buffer = fs.readFileSync(target.src);
   } else {
-    buffer = await getPdfPageBuffer(target.src);
+    // Try descending scales until skia/memory succeeds
+    let lastErr;
+    for (const scale of [2, 1.5, 1, 0.75]) {
+      try {
+        buffer = await getPdfPageBuffer(target.src, scale);
+        break;
+      } catch (err) {
+        lastErr = err;
+      }
+    }
+    if (!buffer) throw lastErr;
   }
   const outPath = path.join(OUT_DIR, target.name);
   const meta = await sharp(buffer, { limitInputPixels: false }).metadata();
