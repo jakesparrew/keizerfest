@@ -916,10 +916,8 @@
     // ---- Crowdfunding progress bar (Ticketbalie public API) ----
     const CROWDFUNDING = {
       url: 'https://rrabscqyndelsxlmfctq.supabase.co/functions/v1/public-crowdfunding-api',
-      eventId: '0726f2da-899b-4fae-b977-d4a80ccfbc0a',
-      token: '02501e27-b5f1-4f60-a155-16f7216c823d',
-      // Supabase anon key — must be set for the gateway to allow the request.
-      // If empty, the section stays hidden.
+      eventId: '1883ded2-e959-4696-b17a-f7b852da36ab',
+      token: '1fffb3ae-57c3-4eba-ac21-feaeefe1b20b',
       anonKey: ''
     };
 
@@ -968,12 +966,16 @@
         url.searchParams.set('token', CROWDFUNDING.token);
         const raw = await tryFetchCrowdfunding(url.toString());
         // Be lenient with response shape — accept several common field names.
-        const data = raw.data || raw.event || raw;
-        const goal = Number(data.goal ?? data.target ?? data.goalAmount ?? data.targetAmount ?? 0);
-        const gathered = Number(data.gathered ?? data.raised ?? data.totalRaised ?? data.currentAmount ?? data.total ?? 0);
-        const contributors = Number(data.contributorCount ?? data.contributors ?? data.donorCount ?? (Array.isArray(data.allContributors) ? data.allContributors.length : 0) ?? 0);
-        const top = data.topContributors || data.topDonors || data.top || [];
-        const currency = data.currency || 'EUR';
+        // Ticketbalie response shape:
+        //   { event:{...}, crowdfunding:{ raised_cents, goal_cents, progress_percentage,
+        //                                 supporter_count, contribution_count, currency },
+        //     top_contributors:[{name, amount_cents, ...}] }
+        const cf = raw.crowdfunding || raw.data?.crowdfunding || raw;
+        const goal = cf.goal_cents != null ? Number(cf.goal_cents) / 100 : Number(cf.goal ?? cf.goalAmount ?? 0);
+        const gathered = cf.raised_cents != null ? Number(cf.raised_cents) / 100 : Number(cf.gathered ?? cf.raised ?? 0);
+        const contributors = Number(cf.supporter_count ?? cf.contribution_count ?? cf.contributorCount ?? raw.supporter_count ?? 0);
+        const top = raw.top_contributors || raw.topContributors || cf.top_contributors || [];
+        const currency = cf.currency || raw.currency || 'EUR';
         if (!goal) throw new Error('no goal');
 
         document.getElementById('cf-goal').textContent = fmtMoney(goal, currency);
@@ -996,7 +998,8 @@
         } else {
           top5.forEach((c, i) => {
             const name = c.name || c.displayName || c.donor || ('Steuner ' + (i + 1));
-            const amt = Number(c.amount ?? c.total ?? c.value ?? 0);
+            const amtCents = Number(c.amount_cents ?? 0);
+            const amt = amtCents > 0 ? amtCents / 100 : Number(c.amount ?? c.total ?? c.value ?? 0);
             const li = document.createElement('li');
             li.className = 'flex justify-between items-baseline border-b border-black/15 pb-2';
             li.innerHTML = '<span class="font-medium truncate pr-3">' + (i+1) + '. ' + name.replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c])) + '</span><span class="font-semibold">' + fmtMoney(amt, currency) + '</span>';
