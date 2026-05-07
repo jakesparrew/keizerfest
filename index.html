@@ -5,19 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Keizerfest 2026 · 14 — 16 mei · Keizerpark Gent</title>
-  <meta name="description" content="Driedaags buurtfestival in Keizerpark, Gentbrugge. Hip Hop Hooray, B*tch Don't Kill My Vibe en Wide Open. 14, 15 en 16 mei 2026.">
+  <meta name="description" content="Gratis driedaags stadsfestival in het Keizerpark in Gent. Vier concepten — Back2Scratch, BDKMV, Wallhala en Wide Open. 14, 15 en 16 mei 2026.">
   <meta name="theme-color" content="#0A0A0A">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Keizerfest 2026 · 14 — 16 mei · Keizerpark Gent">
-  <meta property="og:description" content="Driedaags buurtfestival in Keizerpark. Hip Hop Hooray, BDKMV en Wide Open.">
+  <meta property="og:description" content="Gratis driedaags stadsfestival in Keizerpark, Gent. Steun ons via Ticketbalie zodat het festival gratis kan blijven.">
   <meta property="og:locale" content="nl_BE">
   <meta property="og:locale:alternate" content="en_US">
   <meta property="og:locale:alternate" content="fr_FR">
+  <meta property="og:image" content="/images/poster-bdkmv.jpg">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Keizerfest 2026 · 14 — 16 mei · Keizerpark Gent">
-  <meta name="twitter:description" content="Driedaags buurtfestival in Keizerpark. Hip Hop Hooray, BDKMV en Wide Open.">
+  <meta name="twitter:description" content="Gratis driedaags stadsfestival in Keizerpark, Gent.">
+  <meta name="twitter:image" content="/images/poster-bdkmv.jpg">
 
   <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230A0A0A'/><text x='16' y='23' text-anchor='middle' font-family='Arial Black, sans-serif' font-weight='900' font-size='22' fill='%23F4F1EA'>K</text></svg>">
 
@@ -69,6 +71,59 @@
     .lang-active { color: var(--ink); font-weight: 600; }
     .lang-inactive { color: #9CA3AF; }
     html { scroll-behavior: smooth; }
+    .btn-steun {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.75rem;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      border: 2px solid var(--ink);
+      transition: transform 0.15s, background 0.15s, color 0.15s;
+    }
+    .btn-steun:hover {
+      background: var(--paper);
+      color: var(--ink);
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+    .btn-steun-light {
+      background: var(--paper);
+      color: var(--ink);
+      border-color: var(--paper);
+    }
+    .btn-steun-light:hover {
+      background: var(--ink);
+      color: var(--paper);
+      box-shadow: 4px 4px 0 var(--paper);
+    }
+    .poster-card {
+      aspect-ratio: 5 / 7;
+      overflow: hidden;
+      position: relative;
+      background: var(--ink);
+    }
+    .poster-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .poster-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 2rem;
+      color: var(--paper);
+      background:
+        repeating-linear-gradient(45deg, rgba(244,241,234,0.04) 0 12px, transparent 12px 24px),
+        var(--ink);
+    }
   </style>
 </head>
 <body>
@@ -78,10 +133,12 @@
     <nav class="sticky top-0 z-50 w-full px-6 lg:px-12 py-5 flex items-center justify-between bg-[var(--paper)]/95 backdrop-blur border-b border-black">
       <a href="#" class="display text-3xl">KEIZERFEST</a>
 
-      <div class="hidden lg:flex items-center gap-12">
-        <a href="#day-01" class="display text-lg tracking-wider hover:underline underline-offset-4">01 — HIP HOP</a>
-        <a href="#day-02" class="display text-lg tracking-wider hover:underline underline-offset-4">02 — BDKMV</a>
-        <a href="#day-03" class="display text-lg tracking-wider hover:underline underline-offset-4">03 — WIDE OPEN</a>
+      <div class="hidden lg:flex items-center gap-10">
+        <a href="#concepten" class="display text-lg tracking-wider hover:underline underline-offset-4" data-i18n="nav_concepten">CONCEPTEN</a>
+        <a href="#wat-we-doen" class="display text-lg tracking-wider hover:underline underline-offset-4" data-i18n="nav_about">OVER ONS</a>
+        <a href="#waarom" class="display text-lg tracking-wider hover:underline underline-offset-4" data-i18n="nav_waarom">WAAROM STEUN</a>
+        <a href="#partners" class="display text-lg tracking-wider hover:underline underline-offset-4" data-i18n="nav_partners">PARTNERS</a>
+        <a href="#praktisch" class="display text-lg tracking-wider hover:underline underline-offset-4" data-i18n="nav_praktisch">PRAKTISCH</a>
       </div>
 
       <div class="flex items-center gap-6">
@@ -92,244 +149,316 @@
           <span class="text-gray-400">·</span>
           <button data-lang="fr" class="lang-inactive">FR</button>
         </div>
-        <a href="https://ticketbalie.be" target="_blank" rel="noopener" class="display text-lg flex items-center gap-1 hover:underline" data-i18n="nav_tickets">
-          STEUNTICKETS
+        <a href="https://ticketbalie.be" target="_blank" rel="noopener" class="display text-lg flex items-center gap-1 hover:underline" data-i18n="nav_steun">
+          STEUN ONS
           <iconify-icon icon="lucide:arrow-up-right"></iconify-icon>
         </a>
       </div>
     </nav>
 
     <main class="flex-1">
-      <section class="relative min-h-[90vh] overflow-hidden flex flex-col justify-end p-6 lg:p-12 photo-grain">
-        <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=2000" class="absolute inset-0 w-full h-full object-cover grayscale brightness-50" alt="Keizerpark crowd">
 
-        <div class="absolute top-12 left-6 lg:left-12 text-white">
-           <span class="text-xs font-medium tracking-[0.2em] uppercase" data-i18n="hero_presented_by">PRESENTED BY HIP HOP HOORAY × B*TCH DON'T KILL MY VIBE × WIDE OPEN</span>
+      <!-- HERO: Support call -->
+      <section class="relative min-h-[92vh] overflow-hidden flex flex-col justify-end p-6 lg:p-12 photo-grain text-white">
+        <img src="/images/photo-park-tents.jpg" class="absolute inset-0 w-full h-full object-cover brightness-50" alt="Keizerpark — sfeerbeeld">
+
+        <div class="absolute top-12 left-6 lg:left-12 right-6 lg:right-12 flex flex-col md:flex-row md:justify-between md:items-start gap-4 text-xs font-medium tracking-[0.2em] uppercase">
+          <span data-i18n="hero_eyebrow">KEIZERFEST 2026 · KEIZERPARK GENT · 14 — 16 MEI</span>
+          <span data-i18n="hero_eyebrow_right">DOOR EN VOOR DE STAD</span>
         </div>
 
-        <div class="relative z-10 w-full">
-          <h1 class="text-[14vw] md:text-[12vw] text-white leading-[0.85]">KEIZER-FEST 2&Oslash;26</h1>
-          <div class="flex flex-col md:flex-row gap-6 md:gap-12 mt-4 text-white">
-            <p class="display text-3xl md:text-5xl" data-i18n="hero_dates">14 — 16 MEI 2026</p>
-            <p class="display text-3xl md:text-5xl">KEIZERPARK GENT</p>
+        <div class="relative z-10 w-full max-w-5xl">
+          <p class="text-xs md:text-sm font-bold tracking-widest uppercase mb-4 inline-block bg-[var(--paper)] text-[var(--ink)] px-3 py-1" data-i18n="hero_kicker">DIT JAAR ZONDER STAD GENT</p>
+          <h1 class="text-[10vw] md:text-[7vw] leading-[0.92] mb-6" data-i18n-html="hero_headline">
+            DIT JAAR KRIJGEN WE GEEN<br>FINANCI&Euml;LE ONDERSTEUNING<br>VAN STAD GENT.
+          </h1>
+          <p class="text-2xl md:text-4xl font-semibold leading-tight mb-10 max-w-3xl" data-i18n="hero_subline">Daarom vragen we steun aan wie dat kan missen. Het festival blijft gratis voor iedereen.</p>
+          <a href="https://ticketbalie.be" target="_blank" rel="noopener" class="btn-steun btn-steun-light">
+            <span data-i18n="cta_steun_ons">STEUN ONS</span>
+            <iconify-icon icon="lucide:arrow-up-right"></iconify-icon>
+          </a>
+        </div>
+      </section>
+
+      <!-- INTRO: Wat is Keizerfest -->
+      <section class="px-6 lg:px-12 py-24 md:py-32 border-b border-black">
+        <div class="max-w-5xl">
+          <p class="text-xs font-bold tracking-[0.2em] uppercase mb-8" data-i18n="intro_label">WAT IS KEIZERFEST?</p>
+          <p class="text-3xl md:text-5xl font-medium leading-tight mb-10" data-i18n="intro_main">Keizerfest is een gratis, driedaags stadsfestival in het Keizerpark in Gent, waar muziek, sport, kunst en community samenkomen.</p>
+          <p class="text-xl md:text-2xl font-medium leading-snug mb-6 max-w-3xl" data-i18n="intro_concepts">Van urban cultuur en internationale acts tot yoga in het park, kinderanimatie en creatieve workshops. Met vier concepten — Back2Scratch, B*tch Don't Kill My Vibe, Wallhala en Wide Open — creëren we ruimte voor ontmoeting, expressie en talentontwikkeling.</p>
+          <p class="display text-2xl md:text-3xl mt-12" data-i18n-html="intro_outro">IEDEREEN IS WELKOM.<br>ALLES IS GRATIS.</p>
+        </div>
+      </section>
+
+      <!-- ORIGIN: Vanwaar we komen -->
+      <section id="wat-we-doen" class="px-6 lg:px-12 py-24 md:py-32 border-b border-black bg-[var(--cream)]">
+        <div class="max-w-6xl grid md:grid-cols-12 gap-12">
+          <div class="md:col-span-5">
+            <p class="text-xs font-bold tracking-[0.2em] uppercase mb-8" data-i18n="origin_label">VANWAAR WE KOMEN</p>
+            <h2 class="text-5xl md:text-7xl mb-8" data-i18n-html="origin_heading">DOOR EN<br>VOOR DE STAD</h2>
+          </div>
+          <div class="md:col-span-7 space-y-6 text-lg md:text-xl leading-relaxed">
+            <p data-i18n="origin_p1">Wat begon als een kleinschalige blockparty groeide uit tot een meerdaags stadsfestival dat jaarlijks duizenden mensen samenbrengt in het Keizerpark.</p>
+            <p data-i18n="origin_p2">Vandaag bouwen we verder aan een open, inclusieve en creatieve ruimte waar jongeren, buurtbewoners, artiesten en makers elkaar ontmoeten.</p>
+            <p data-i18n="origin_p3">Geen commercieel festival. Geen verborgen agenda. Een gedeelde ruimte van, door en voor de stad.</p>
           </div>
         </div>
       </section>
 
-      <section class="px-6 lg:px-12 py-24">
-        <div class="max-w-3xl">
-          <p class="text-2xl md:text-3xl font-medium leading-tight" data-i18n="intro">Een driedaags buurtfestival geworteld in het beton en groen van Gentbrugge. Geen marketingpraat, enkel muziek, community en rauwe overgave. Elk van de drie dagen gecureerd door lokale pioniers.</p>
+      <!-- ACTIVITEITEN: Wat we doen -->
+      <section class="px-6 lg:px-12 py-24 md:py-32 border-b border-black">
+        <div class="max-w-7xl">
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
+            <div>
+              <p class="text-xs font-bold tracking-[0.2em] uppercase mb-6" data-i18n="activities_label">WAT WE AANBIEDEN</p>
+              <h2 class="text-5xl md:text-7xl" data-i18n-html="activities_heading">DRIE DAGEN.<br>&Eacute;&Eacute;N PARK.<br>EEN HOOP TE BELEVEN.</h2>
+            </div>
+          </div>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-black/20">
+            <li class="border-r border-b border-black/20 p-8">
+              <span class="display text-xl block mb-2">01</span>
+              <span class="display text-2xl md:text-3xl block mb-2" data-i18n="act_1_h">LIVE MUZIEK</span>
+              <span class="text-sm uppercase tracking-widest" data-i18n="act_1_b">Lokaal en internationaal.</span>
+            </li>
+            <li class="border-r border-b border-black/20 p-8">
+              <span class="display text-xl block mb-2">02</span>
+              <span class="display text-2xl md:text-3xl block mb-2" data-i18n="act_2_h">DJ-SETS &amp; DANS</span>
+              <span class="text-sm uppercase tracking-widest" data-i18n="act_2_b">Van scratch tot techno.</span>
+            </li>
+            <li class="border-r border-b border-black/20 p-8">
+              <span class="display text-xl block mb-2">03</span>
+              <span class="display text-2xl md:text-3xl block mb-2" data-i18n="act_3_h">GRAFFITI &amp; WORKSHOPS</span>
+              <span class="text-sm uppercase tracking-widest" data-i18n="act_3_b">Creatieve makerszones.</span>
+            </li>
+            <li class="border-r border-b border-black/20 p-8">
+              <span class="display text-xl block mb-2">04</span>
+              <span class="display text-2xl md:text-3xl block mb-2" data-i18n="act_4_h">SKATE &amp; BREAKDANCE</span>
+              <span class="text-sm uppercase tracking-widest" data-i18n="act_4_b">Sport in het park.</span>
+            </li>
+            <li class="border-r border-b border-black/20 p-8">
+              <span class="display text-xl block mb-2">05</span>
+              <span class="display text-2xl md:text-3xl block mb-2" data-i18n="act_5_h">YOGA &amp; WELZIJN</span>
+              <span class="text-sm uppercase tracking-widest" data-i18n="act_5_b">Tussen de bomen.</span>
+            </li>
+            <li class="border-r border-b border-black/20 p-8">
+              <span class="display text-xl block mb-2">06</span>
+              <span class="display text-2xl md:text-3xl block mb-2" data-i18n="act_6_h">KINDERANIMATIE</span>
+              <span class="text-sm uppercase tracking-widest" data-i18n="act_6_b">En theater voor de kleinsten.</span>
+            </li>
+            <li class="border-r border-b border-black/20 p-8">
+              <span class="display text-xl block mb-2">07</span>
+              <span class="display text-2xl md:text-3xl block mb-2" data-i18n="act_7_h">MAKERSMARKT</span>
+              <span class="text-sm uppercase tracking-widest" data-i18n="act_7_b">Vinyl en lokaal werk.</span>
+            </li>
+            <li class="border-r border-b border-black/20 p-8">
+              <span class="display text-xl block mb-2">08</span>
+              <span class="display text-2xl md:text-3xl block mb-2" data-i18n="act_8_h">CLOSET SALE</span>
+              <span class="text-sm uppercase tracking-widest" data-i18n="act_8_b">Buurt-initiatieven.</span>
+            </li>
+          </ul>
         </div>
       </section>
 
-      <section id="day-01" class="p-6 lg:p-12">
-        <div class="relative bg-black text-white p-8 md:p-16 photo-grain min-h-screen flex flex-col overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1544923407-74070a92f87a?auto=format&fit=crop&q=80&w=2000" class="absolute inset-0 w-full h-full object-cover opacity-40 grayscale" alt="Hip Hop crowd">
+      <!-- WAAROM STEUN: Long form + 2nd CTA -->
+      <section id="waarom" class="px-6 lg:px-12 py-24 md:py-32 border-b border-black bg-[var(--ink)] text-[var(--paper)]">
+        <div class="max-w-5xl">
+          <p class="text-xs font-bold tracking-[0.2em] uppercase mb-6 opacity-70" data-i18n="why_label">WAAROM WE JULLIE STEUN VRAGEN</p>
+          <h2 class="text-5xl md:text-8xl mb-12 leading-[0.9]" data-i18n-html="why_heading">KEIZERFEST IS<br>VOLLEDIG GRATIS.<br>EN DAT WILLEN<br>WE ZO HOUDEN.</h2>
+          <div class="space-y-6 text-lg md:text-xl leading-relaxed mb-12 max-w-3xl">
+            <p data-i18n="why_p1">Dit jaar krijgen we geen financiële ondersteuning van Stad Gent. Daarom rekenen we op de steun van bezoekers die kunnen bijdragen.</p>
+            <p data-i18n="why_p2">Jullie steun gaat rechtstreeks naar eerlijke vergoedingen voor artiesten, naar workshops en activiteiten, naar opbouw en productie, en naar het toegankelijk houden van het festival.</p>
+            <p class="display text-2xl md:text-3xl pt-4" data-i18n-html="why_p3">GEEN GROTE WINSTEN.<br>GEEN VERBORGEN AGENDA.<br>EEN COMMUNITY DIE IETS MOGELIJK MAAKT.</p>
+          </div>
+          <a href="https://ticketbalie.be" target="_blank" rel="noopener" class="btn-steun btn-steun-light">
+            <span data-i18n="cta_steun_ons_2">STEUN ONS</span>
+            <iconify-icon icon="lucide:arrow-up-right"></iconify-icon>
+          </a>
+          <p class="text-xs uppercase tracking-widest mt-8 opacity-70" data-i18n="why_disclaimer">Het festival blijft gratis en toegankelijk voor iedereen, ook zonder bijdrage.</p>
+        </div>
+      </section>
 
-          <div class="relative z-10 flex flex-col h-full flex-1">
-            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-12 uppercase text-xs tracking-widest font-bold">
-              <div class="bg-white text-black px-3 py-1 self-start" data-i18n="d1_presents">HIP HOP HOORAY PRESENTS</div>
-              <div class="bg-white text-black px-3 py-1 self-start" data-i18n="d1_when">DO 14.05.2026 · KEIZERPARK GENT</div>
+      <!-- DE CONCEPTEN: 4-poster grid -->
+      <section id="concepten" class="px-6 lg:px-12 py-24 md:py-32 border-b border-black">
+        <div class="max-w-7xl">
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
+            <div>
+              <p class="text-xs font-bold tracking-[0.2em] uppercase mb-6" data-i18n="concepts_label">DE CONCEPTEN</p>
+              <h2 class="text-5xl md:text-7xl" data-i18n-html="concepts_heading">VIER CREWS.<br>&Eacute;&Eacute;N PARK.</h2>
             </div>
+            <p class="text-base md:text-lg max-w-md" data-i18n="concepts_intro">Vier collectieven cureren elk hun eigen programma. Samen vormen ze drie dagen Keizerfest.</p>
+          </div>
 
-            <div class="mb-16">
-              <div class="inline-block bg-white text-black px-6 py-2 mb-12">
-                <h2 class="text-7xl md:text-[12vw] leading-[0.8]">HIP HOP HOORAY</h2>
+          <div class="space-y-16 md:space-y-24">
+
+            <!-- DAG 1: Donderdag — Back2Scratch + Wallhala -->
+            <div>
+              <div class="flex items-baseline justify-between border-b border-black pb-4 mb-8">
+                <h3 class="display text-3xl md:text-5xl" data-i18n="day1_title">DAG 01 — DONDERDAG 14 MEI</h3>
+                <span class="text-xs font-bold tracking-widest uppercase opacity-60" data-i18n="day1_pill">URBAN CULTURE &amp; FAMILIE</span>
               </div>
-
-              <div class="grid md:grid-cols-12 gap-12">
-                <div class="md:col-span-8">
-                  <span class="text-xs tracking-widest block mb-6 uppercase opacity-60" data-i18n="lineup_label">A—Z LINEUP</span>
-                  <div class="flex flex-col gap-1 display text-5xl md:text-7xl">
-                    <span>DJ VEGA</span>
-                    <span>HARDERE AANPAK</span>
-                    <span>SMIF-N-WESSUN</span>
-                    <span>TIESKO</span>
-                    <span>YANNISH</span>
-                  </div>
-                </div>
-                <div class="md:col-span-4 mt-8 md:mt-0">
-                  <span class="text-xs tracking-widest block mb-6 uppercase opacity-60" data-i18n="sub_events_label">SUB-EVENTS</span>
-                  <ul class="text-sm uppercase tracking-widest space-y-3">
-                    <li data-i18n="d1_sub_1">Breakdance Battle for Kids by Together We Stand</li>
-                    <li data-i18n="d1_sub_2">Graffiti Jam &amp; Workshops by Wallin'</li>
-                    <li data-i18n="d1_sub_3">Skate Jam by Curb Skateshop</li>
-                  </ul>
-                </div>
+              <div class="grid md:grid-cols-2 gap-6 md:gap-10">
+                <figure>
+                  <a href="/images/banner-back2scratch.jpg" target="_blank" rel="noopener" class="block w-full bg-[var(--ink)] overflow-hidden">
+                    <img src="/images/banner-back2scratch.jpg" alt="Back2Scratch — Keizerfest 2026, donderdag 14 mei" loading="lazy" class="w-full h-auto block">
+                  </a>
+                  <figcaption class="mt-4">
+                    <p class="display text-2xl md:text-3xl">BACK2SCRATCH</p>
+                    <p class="text-sm leading-snug mt-2" data-i18n="c_b2s_desc">Hip hop, scratch en skate jam — graffiti workshops, breakdance en een free festival 's avonds.</p>
+                  </figcaption>
+                </figure>
+                <figure>
+                  <a href="/images/banner-wallhala.jpg" target="_blank" rel="noopener" class="block w-full bg-[#3FBFA9] overflow-hidden">
+                    <img src="/images/banner-wallhala.jpg" alt="Wallhala — Keizerfest zomerterras, donderdag 14 mei" loading="lazy" class="w-full h-auto block">
+                  </a>
+                  <figcaption class="mt-4">
+                    <p class="display text-2xl md:text-3xl">WALLHALA</p>
+                    <p class="text-sm leading-snug mt-2" data-i18n="c_wallhala_desc">Kindertheater, springkasteel, graffiti &amp; sticker workshops, schminkstand en silent disco — een dag voor de kleinsten en de buurt.</p>
+                  </figcaption>
+                </figure>
               </div>
             </div>
 
-            <div class="mt-auto flex flex-wrap gap-x-10 gap-y-4 items-center border-t border-white/20 pt-8 opacity-60">
-              <span class="display text-xl">B2S</span>
-              <span class="display text-xl">MADCAT</span>
-              <span class="display text-xl">gent:</span>
-              <span class="display text-xl">CORONA</span>
-              <span class="display text-xl">COCA-COLA</span>
-              <span class="display text-xl">MONSTER</span>
+            <!-- DAG 2: Vrijdag — BDKMV -->
+            <div>
+              <div class="flex items-baseline justify-between border-b border-black pb-4 mb-8">
+                <h3 class="display text-3xl md:text-5xl" data-i18n="day2_title">DAG 02 — VRIJDAG 15 MEI</h3>
+                <span class="text-xs font-bold tracking-widest uppercase opacity-60" data-i18n="day2_pill">VROUWELIJK PLATEAU</span>
+              </div>
+              <figure>
+                <a href="/images/poster-bdkmv.jpg" target="_blank" rel="noopener" class="block w-full max-w-2xl bg-[#FF5BA7] overflow-hidden">
+                  <img src="/images/poster-bdkmv.jpg" alt="B*tch Don't Kill My Vibe — Keizerfest 2026, vrijdag 15 mei" loading="lazy" class="w-full h-auto block">
+                </a>
+                <figcaption class="mt-4 max-w-2xl">
+                  <p class="display text-2xl md:text-3xl">B*TCH DON'T KILL MY VIBE</p>
+                  <p class="text-sm leading-snug mt-2" data-i18n="c_bdkmv_desc">Vrouwelijk gecureerd plateau met live acts, een creators' market door Stadsmakers en yoga in het park door Journey of Yoga.</p>
+                </figcaption>
+              </figure>
             </div>
+
+            <!-- DAG 3: Zaterdag — Wide Open -->
+            <div>
+              <div class="flex items-baseline justify-between border-b border-black pb-4 mb-8">
+                <h3 class="display text-3xl md:text-5xl" data-i18n="day3_title">DAG 03 — ZATERDAG 16 MEI</h3>
+                <span class="text-xs font-bold tracking-widest uppercase opacity-60" data-i18n="day3_pill">ELEKTRONISCH</span>
+              </div>
+              <figure>
+                <a href="/images/poster-wide-open.jpg" target="_blank" rel="noopener" class="block w-full max-w-2xl bg-[var(--green)] overflow-hidden">
+                  <img src="/images/poster-wide-open.jpg" alt="Wide Open — Keizerfest 2026, zaterdag 16 mei" loading="lazy" class="w-full h-auto block">
+                </a>
+                <figcaption class="mt-4 max-w-2xl">
+                  <p class="display text-2xl md:text-3xl">WIDE &Oslash;PEN</p>
+                  <p class="text-sm leading-snug mt-2" data-i18n="c_wideopen_desc">Elektronische muziek met brunch &amp; beats door Disco Déjeuner en een vinyl market door The Rekord Klub.</p>
+                </figcaption>
+              </figure>
+            </div>
+
           </div>
         </div>
       </section>
 
-      <section id="day-02" class="p-6 lg:p-12">
-        <div class="relative bg-[var(--pink)] text-[var(--cream)] p-8 md:p-16 min-h-screen flex flex-col">
-          <div class="relative z-10 flex flex-col h-full flex-1">
-            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-12 text-black text-xs font-bold tracking-widest uppercase">
-              <div data-i18n="d2_presents">B*TCH, DON'T KILL MY VIBE PRESENTS</div>
-              <div data-i18n="d2_when">VR 15.05.2026 · KEIZERPARK GENT</div>
-            </div>
-
-            <div class="mb-16">
-              <h2 class="text-8xl md:text-[14vw] leading-[0.8] mb-12">BDKMV</h2>
-
-              <div class="grid md:grid-cols-12 gap-12">
-                <div class="md:col-span-8">
-                  <span class="text-black text-xs font-bold tracking-widest block mb-6 uppercase opacity-60" data-i18n="lineup_label_2">A—Z LINEUP</span>
-                  <div class="flex flex-col gap-1 display text-5xl md:text-7xl">
-                    <span>CHANELLE</span>
-                    <span>GOLDEN ZEBORA</span>
-                    <span>J.ROOTS</span>
-                    <span>NINETTE</span>
-                    <span>ROSIE</span>
-                  </div>
-                </div>
-                <div class="md:col-span-4 mt-8 md:mt-0">
-                  <span class="text-black text-xs font-bold tracking-widest block mb-6 uppercase opacity-60" data-i18n="sub_events_label_2">SUB-EVENTS</span>
-                  <ul class="text-black text-sm uppercase tracking-widest space-y-3">
-                    <li data-i18n="d2_sub_1">Creators' Market by Stadsmakers</li>
-                    <li data-i18n="d2_sub_2">Yoga in the Park by Journey Of Yoga</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-auto flex flex-col md:flex-row gap-6 md:justify-between md:items-end border-t border-black/20 pt-8">
-              <div class="flex flex-wrap gap-x-8 gap-y-3 items-center text-black opacity-70">
-                <span class="display text-lg">B*TCH DON'T KILL MY VIBE</span>
-                <span class="display text-lg">MADCAT</span>
-                <span class="display text-lg">CORONA</span>
-                <span class="display text-lg">gent:</span>
-              </div>
-              <div class="text-black text-xs uppercase font-bold tracking-widest md:text-right" data-i18n-html="d2_note">VOOR DE GEMEENSCHAP.<br>GRATIS FIETSPARKING.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="day-03" class="p-6 lg:p-12">
-        <div class="relative bg-[var(--green)] text-white p-8 md:p-16 min-h-screen flex flex-col overflow-hidden">
-          <div class="absolute inset-0 opacity-30 mix-blend-multiply" style="background-image: radial-gradient(ellipse at 20% 30%, #145C3B 0%, transparent 50%), radial-gradient(ellipse at 80% 70%, #145C3B 0%, transparent 60%);"></div>
-
-          <div class="relative z-10 flex flex-col h-full flex-1">
-            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-12 uppercase text-xs tracking-widest font-bold">
-              <div data-i18n="d3_presents">WIDE OPEN PRESENTS</div>
-              <div data-i18n="d3_when">ZA 16.05.2026 · KEIZERPARK GENT</div>
-            </div>
-
-            <div class="mb-16">
-              <h2 class="text-8xl md:text-[14vw] leading-[0.8] mb-12">WIDE &Oslash;PEN</h2>
-
-              <div class="grid md:grid-cols-12 gap-12">
-                <div class="md:col-span-8">
-                  <span class="text-xs tracking-widest block mb-6 uppercase opacity-60" data-i18n="lineup_label_3">A—Z LINEUP</span>
-                  <div class="flex flex-col gap-1 display text-5xl md:text-7xl">
-                    <span>BIBI SECK</span>
-                    <span>FELIX CLAUS B2B WELLSEE</span>
-                    <span>MOKER</span>
-                    <span>PERRA INMUNDA</span>
-                  </div>
-                </div>
-                <div class="md:col-span-4 mt-8 md:mt-0">
-                  <span class="text-xs tracking-widest block mb-6 uppercase opacity-60" data-i18n="sub_events_label_3">SUB-EVENTS</span>
-                  <ul class="text-sm uppercase tracking-widest space-y-3">
-                    <li data-i18n="d3_sub_1">Brunch &amp; Beats by Disco Déjeuner</li>
-                    <li data-i18n="d3_sub_2">Vinyl Market by The Rekord Klub</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-auto flex flex-col md:flex-row gap-6 md:justify-between md:items-center border-t border-white/20 pt-8 opacity-70">
-              <div class="flex flex-wrap gap-x-8 gap-y-3 items-center">
-                <span class="display text-xl">WIDE OPEN</span>
-                <span class="display text-xl">MADCAT</span>
-                <span class="display text-xl">gent:</span>
-                <span class="display text-xl">CORONA</span>
-              </div>
-              <span class="text-xs uppercase tracking-widest">KEIZERPARK · GENTBRUGGE</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="tickets" class="px-6 lg:px-12 py-24 md:py-32 border-t border-black">
+      <!-- STEUNTICKETS: €5 / €10 / €15 -->
+      <section id="tickets" class="px-6 lg:px-12 py-24 md:py-32 border-b border-black">
         <div class="max-w-7xl mx-auto">
           <div class="grid lg:grid-cols-12 gap-12 lg:gap-24 items-start">
             <div class="lg:col-span-5">
+              <p class="text-xs font-bold tracking-[0.2em] uppercase mb-6" data-i18n="tickets_label">HOE JE KAN HELPEN</p>
               <h2 class="text-6xl md:text-8xl mb-8" data-i18n="tickets_heading">STEUNTICKETS</h2>
-              <p class="text-lg max-w-md" data-i18n="tickets_body">Keizerfest is onafhankelijk. Je ticket helpt ons om de buurtwerking en artiesten eerlijk te ondersteunen. Kies je bijdrage.</p>
-              <p class="text-xs uppercase tracking-widest mt-6 opacity-60" data-i18n="tickets_note">Verkoop loopt via Ticketbalie. Externe link.</p>
+              <p class="text-lg max-w-md mb-6" data-i18n="tickets_body">Met jullie bijdrage maken we live optredens, workshops, kinderanimatie en een open plek voor iedereen mogelijk.</p>
+              <p class="display text-xl md:text-2xl mt-8 max-w-md" data-i18n-html="tickets_disclaimer">DIT IS GEEN TOEGANGSTICKET.<br>HET FESTIVAL BLIJFT GRATIS,<br>OOK ZONDER BIJDRAGE.</p>
             </div>
             <div class="lg:col-span-7 w-full">
               <div class="flex flex-col border-t border-black">
                 <a href="https://ticketbalie.be" target="_blank" rel="noopener" class="flex items-center justify-between py-8 md:py-10 border-b border-black hover:bg-black hover:text-white transition-colors group px-2">
-                  <span class="display text-3xl md:text-5xl" data-i18n="tier_1_name">BASIS STEUN</span>
+                  <span class="display text-3xl md:text-5xl" data-i18n="tier_1_name">KLEINE STEUN</span>
                   <div class="flex items-center gap-4 md:gap-6">
-                    <span class="display text-3xl md:text-5xl">€15</span>
+                    <span class="display text-3xl md:text-5xl">€5</span>
                     <iconify-icon icon="lucide:arrow-up-right" class="text-2xl md:text-3xl group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></iconify-icon>
                   </div>
                 </a>
                 <a href="https://ticketbalie.be" target="_blank" rel="noopener" class="flex items-center justify-between py-8 md:py-10 border-b border-black hover:bg-black hover:text-white transition-colors group px-2">
                   <span class="display text-3xl md:text-5xl" data-i18n="tier_2_name">FESTIVAL VRIEND</span>
                   <div class="flex items-center gap-4 md:gap-6">
-                    <span class="display text-3xl md:text-5xl">€50</span>
+                    <span class="display text-3xl md:text-5xl">€10</span>
                     <iconify-icon icon="lucide:arrow-up-right" class="text-2xl md:text-3xl group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></iconify-icon>
                   </div>
                 </a>
                 <a href="https://ticketbalie.be" target="_blank" rel="noopener" class="flex items-center justify-between py-8 md:py-10 border-b border-black hover:bg-black hover:text-white transition-colors group px-2">
-                  <span class="display text-3xl md:text-5xl" data-i18n="tier_3_name">KEIZER PATR&Oslash;&Oslash;N</span>
+                  <span class="display text-3xl md:text-5xl" data-i18n="tier_3_name">FESTIVALMAKER</span>
                   <div class="flex items-center gap-4 md:gap-6">
-                    <span class="display text-3xl md:text-5xl">€150</span>
+                    <span class="display text-3xl md:text-5xl">€15</span>
                     <iconify-icon icon="lucide:arrow-up-right" class="text-2xl md:text-3xl group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></iconify-icon>
                   </div>
                 </a>
               </div>
+              <p class="text-xs uppercase tracking-widest mt-8 opacity-60" data-i18n="tickets_note">Verkoop loopt via Ticketbalie. Externe link.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="p-6 lg:p-12 border-t border-black">
+      <!-- PRAKTISCH -->
+      <section id="praktisch" class="px-6 lg:px-12 py-24 md:py-32 border-b border-black">
+        <p class="text-xs font-bold tracking-[0.2em] uppercase mb-12" data-i18n="info_label">PRAKTISCH</p>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-black/20">
           <div class="p-10 md:p-12 border-b md:border-b-0 md:border-r border-black/20">
-            <h3 class="display text-2xl mb-6" data-i18n="info_tickets_h">TICKETS</h3>
-            <p class="text-sm uppercase tracking-widest leading-relaxed" data-i18n="info_tickets_b">Alleen online via Ticketbalie. Geen kassa. Steun het festival naar vermogen.</p>
+            <h3 class="display text-2xl mb-6" data-i18n="info_when_h">WANNEER</h3>
+            <p class="text-sm uppercase tracking-widest leading-relaxed" data-i18n="info_when_b">Donderdag 14, vrijdag 15 en zaterdag 16 mei 2026.</p>
           </div>
           <div class="p-10 md:p-12 border-b md:border-b-0 md:border-r border-black/20">
-            <h3 class="display text-2xl mb-6" data-i18n="info_transport_h">TRANSPORT</h3>
-            <p class="text-sm uppercase tracking-widest leading-relaxed" data-i18n="info_transport_b">Geen autoparking. Beveiligde fietsparking of festival-shuttle vanaf Gent-Sint-Pieters.</p>
+            <h3 class="display text-2xl mb-6" data-i18n="info_where_h">WAAR</h3>
+            <p class="text-sm uppercase tracking-widest leading-relaxed" data-i18n="info_where_b">Keizerpark, Gentbrugge. Toegang gratis. Geen autoparking — beveiligde fietsparking voorzien.</p>
           </div>
           <div class="p-10 md:p-12 border-b md:border-b-0 md:border-r border-black/20">
             <h3 class="display text-2xl mb-6" data-i18n="info_food_h">ETEN &amp; DRINKEN</h3>
-            <p class="text-sm uppercase tracking-widest leading-relaxed" data-i18n="info_food_b">100% vegi en lokaal. Eigen drinkbus welkom. Cashless via polsbandje.</p>
+            <p class="text-sm uppercase tracking-widest leading-relaxed" data-i18n="info_food_b">Lokale standjes en drank. Eigen drinkbus welkom. Cashless via polsbandje.</p>
           </div>
           <div class="p-10 md:p-12">
             <h3 class="display text-2xl mb-6" data-i18n="info_access_h">TOEGANKELIJKHEID</h3>
-            <p class="text-sm uppercase tracking-widest leading-relaxed" data-i18n="info_access_b">Rolstoeltoegankelijk. Prikkelarme zone achter main stage. Assistentiehonden welkom.</p>
+            <p class="text-sm uppercase tracking-widest leading-relaxed" data-i18n="info_access_b">Rolstoeltoegankelijk. Prikkelarme zone. Assistentiehonden welkom.</p>
           </div>
         </div>
       </section>
+
+      <!-- PARTNERS -->
+      <section id="partners" class="px-6 lg:px-12 py-24 md:py-32 border-b border-black">
+        <div class="max-w-7xl">
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+            <div>
+              <p class="text-xs font-bold tracking-[0.2em] uppercase mb-6" data-i18n="partners_label">PARTNERS &amp; SPONSORS</p>
+              <h2 class="text-5xl md:text-7xl" data-i18n-html="partners_heading">MET DANK AAN<br>WIE DIT MOGELIJK MAAKT.</h2>
+            </div>
+            <p class="text-base md:text-lg max-w-md" data-i18n="partners_intro">Keizerfest 2026 wordt mede mogelijk gemaakt door onderstaande partners. Wil je ook bijdragen? Neem contact op.</p>
+          </div>
+
+          <!-- Featured partner: Ticketbalie -->
+          <a href="https://www.ticketbalie.com" target="_blank" rel="noopener" class="block border border-black p-8 md:p-12 mb-10 hover:bg-[var(--ink)] hover:text-[var(--paper)] transition-colors group">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div>
+                <p class="text-xs font-bold tracking-[0.2em] uppercase mb-3 opacity-60" data-i18n="partner_featured_label">TICKETING-PARTNER</p>
+                <p class="display text-5xl md:text-7xl">TICKETBALIE</p>
+                <p class="text-sm md:text-base mt-4 max-w-xl" data-i18n="partner_featured_desc">Ticketing en steuntickets voor Keizerfest 2026 lopen via Ticketbalie. Lokaal Belgisch ticketingplatform voor onafhankelijke evenementen.</p>
+              </div>
+              <span class="display text-xl md:text-2xl flex items-center gap-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
+                <span data-i18n="partner_featured_cta">BEZOEK TICKETBALIE.COM</span>
+                <iconify-icon icon="lucide:arrow-up-right"></iconify-icon>
+              </span>
+            </div>
+          </a>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 border-t border-black/20 pt-10">
+            <span class="display text-2xl md:text-3xl">gent:</span>
+            <span class="display text-2xl md:text-3xl">MADCAT</span>
+            <span class="display text-2xl md:text-3xl">CORONA</span>
+            <span class="display text-2xl md:text-3xl">B2S</span>
+            <span class="display text-2xl md:text-3xl">COCA-COLA</span>
+            <span class="display text-2xl md:text-3xl">MONSTER</span>
+          </div>
+        </div>
+      </section>
+
     </main>
 
-    <footer class="px-6 lg:px-12 py-12 border-t border-black">
-      <div class="flex flex-wrap items-center justify-between gap-x-12 gap-y-6 mb-12 opacity-50">
-        <span class="display text-2xl">gent:</span>
-        <span class="display text-2xl">MADCAT</span>
-        <span class="display text-2xl">CORONA</span>
-        <span class="display text-2xl">B2S</span>
-        <span class="display text-2xl">COCA-COLA</span>
-        <span class="display text-2xl">MONSTER</span>
-      </div>
+    <footer class="px-6 lg:px-12 py-12">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
         <div class="display text-5xl md:text-7xl leading-none">
           KEIZERFEST<br>2026
@@ -337,6 +466,7 @@
         <div class="text-xs space-y-2 font-medium uppercase tracking-[0.2em] md:text-right">
           <p>KEIZERPARK · GENTBRUGGE · BE</p>
           <p><a href="mailto:hello@keizerfest.be" class="hover:underline">hello@keizerfest.be</a></p>
+          <p><a href="https://ticketbalie.be" target="_blank" rel="noopener" class="hover:underline" data-i18n="footer_steun">Steun ons via Ticketbalie ↗</a></p>
           <p data-i18n="footer_rights">© 2026 Alle rechten voorbehouden</p>
         </div>
       </div>
@@ -346,126 +476,261 @@
   <script>
     const i18n = {
       nl: {
-        nav_tickets: "STEUNTICKETS",
-        hero_presented_by: "GEPRESENTEERD DOOR HIP HOP HOORAY × B*TCH DON'T KILL MY VIBE × WIDE OPEN",
-        hero_dates: "14 — 16 MEI 2026",
-        intro: "Een driedaags buurtfestival geworteld in het beton en groen van Gentbrugge. Geen marketingpraat, enkel muziek, community en rauwe overgave. Elk van de drie dagen gecureerd door lokale pioniers.",
-        d1_presents: "HIP HOP HOORAY PRESENTS",
-        d1_when: "DO 14.05.2026 · KEIZERPARK GENT",
-        d1_sub_1: "Breakdance Battle for Kids door Together We Stand",
-        d1_sub_2: "Graffiti Jam & Workshops door Wallin'",
-        d1_sub_3: "Skate Jam door Curb Skateshop",
-        d2_presents: "B*TCH, DON'T KILL MY VIBE PRESENTS",
-        d2_when: "VR 15.05.2026 · KEIZERPARK GENT",
-        d2_sub_1: "Creators' Market door Stadsmakers",
-        d2_sub_2: "Yoga in the Park door Journey Of Yoga",
-        d2_note: "VOOR DE GEMEENSCHAP.<br>GRATIS FIETSPARKING.",
-        d3_presents: "WIDE OPEN PRESENTS",
-        d3_when: "ZA 16.05.2026 · KEIZERPARK GENT",
-        d3_sub_1: "Brunch & Beats door Disco Déjeuner",
-        d3_sub_2: "Vinyl Market door The Rekord Klub",
-        lineup_label: "A—Z LINEUP",
-        lineup_label_2: "A—Z LINEUP",
-        lineup_label_3: "A—Z LINEUP",
-        sub_events_label: "RANDPROGRAMMA",
-        sub_events_label_2: "RANDPROGRAMMA",
-        sub_events_label_3: "RANDPROGRAMMA",
+        nav_concepten: "CONCEPTEN",
+        nav_about: "OVER ONS",
+        nav_waarom: "WAAROM STEUN",
+        nav_praktisch: "PRAKTISCH",
+        nav_steun: "STEUN ONS",
+        cta_steun_ons: "STEUN ONS",
+        cta_steun_ons_2: "STEUN ONS",
+        hero_eyebrow: "KEIZERFEST 2026 · KEIZERPARK GENT · 14 — 16 MEI",
+        hero_eyebrow_right: "DOOR EN VOOR DE STAD",
+        hero_kicker: "DIT JAAR ZONDER STAD GENT",
+        hero_headline: "DIT JAAR KRIJGEN WE GEEN<br>FINANCIËLE ONDERSTEUNING<br>VAN STAD GENT.",
+        hero_subline: "Daarom vragen we steun aan wie dat kan missen. Het festival blijft gratis voor iedereen.",
+        intro_label: "WAT IS KEIZERFEST?",
+        intro_main: "Keizerfest is een gratis, driedaags stadsfestival in het Keizerpark in Gent, waar muziek, sport, kunst en community samenkomen.",
+        intro_concepts: "Van urban cultuur en internationale acts tot yoga in het park, kinderanimatie en creatieve workshops. Met vier concepten — Back2Scratch, B*tch Don't Kill My Vibe, Wallhala en Wide Open — creëren we ruimte voor ontmoeting, expressie en talentontwikkeling.",
+        intro_outro: "IEDEREEN IS WELKOM.<br>ALLES IS GRATIS.",
+        origin_label: "VANWAAR WE KOMEN",
+        origin_heading: "DOOR EN<br>VOOR DE STAD",
+        origin_p1: "Wat begon als een kleinschalige blockparty groeide uit tot een meerdaags stadsfestival dat jaarlijks duizenden mensen samenbrengt in het Keizerpark.",
+        origin_p2: "Vandaag bouwen we verder aan een open, inclusieve en creatieve ruimte waar jongeren, buurtbewoners, artiesten en makers elkaar ontmoeten.",
+        origin_p3: "Geen commercieel festival. Geen verborgen agenda. Een gedeelde ruimte van, door en voor de stad.",
+        activities_label: "WAT WE AANBIEDEN",
+        activities_heading: "DRIE DAGEN.<br>ÉÉN PARK.<br>EEN HOOP TE BELEVEN.",
+        act_1_h: "LIVE MUZIEK",
+        act_1_b: "Lokaal en internationaal.",
+        act_2_h: "DJ-SETS & DANS",
+        act_2_b: "Van scratch tot techno.",
+        act_3_h: "GRAFFITI & WORKSHOPS",
+        act_3_b: "Creatieve makerszones.",
+        act_4_h: "SKATE & BREAKDANCE",
+        act_4_b: "Sport in het park.",
+        act_5_h: "YOGA & WELZIJN",
+        act_5_b: "Tussen de bomen.",
+        act_6_h: "KINDERANIMATIE",
+        act_6_b: "En theater voor de kleinsten.",
+        act_7_h: "MAKERSMARKT",
+        act_7_b: "Vinyl en lokaal werk.",
+        act_8_h: "CLOSET SALE",
+        act_8_b: "Buurt-initiatieven.",
+        why_label: "WAAROM WE JULLIE STEUN VRAGEN",
+        why_heading: "KEIZERFEST IS<br>VOLLEDIG GRATIS.<br>EN DAT WILLEN<br>WE ZO HOUDEN.",
+        why_p1: "Dit jaar krijgen we geen financiële ondersteuning van Stad Gent. Daarom rekenen we op de steun van bezoekers die kunnen bijdragen.",
+        why_p2: "Jullie steun gaat rechtstreeks naar eerlijke vergoedingen voor artiesten, naar workshops en activiteiten, naar opbouw en productie, en naar het toegankelijk houden van het festival.",
+        why_p3: "GEEN GROTE WINSTEN.<br>GEEN VERBORGEN AGENDA.<br>EEN COMMUNITY DIE IETS MOGELIJK MAAKT.",
+        why_disclaimer: "Het festival blijft gratis en toegankelijk voor iedereen, ook zonder bijdrage.",
+        concepts_label: "DE CONCEPTEN",
+        concepts_heading: "VIER CREWS.<br>ÉÉN PARK.",
+        concepts_intro: "Vier collectieven cureren elk hun eigen programma. Samen vormen ze drie dagen Keizerfest.",
+        day1_title: "DAG 01 — DONDERDAG 14 MEI",
+        day1_pill: "URBAN CULTURE & FAMILIE",
+        day2_title: "DAG 02 — VRIJDAG 15 MEI",
+        day2_pill: "VROUWELIJK PLATEAU",
+        day3_title: "DAG 03 — ZATERDAG 16 MEI",
+        day3_pill: "ELEKTRONISCH",
+        c_b2s_desc: "Hip hop, scratch en skate jam — graffiti workshops, breakdance en een free festival 's avonds.",
+        c_wallhala_desc: "Kindertheater, springkasteel, graffiti & sticker workshops, schminkstand en silent disco — een dag voor de kleinsten en de buurt.",
+        c_bdkmv_desc: "Vrouwelijk gecureerd plateau met live acts, een creators' market door Stadsmakers en yoga in het park door Journey of Yoga.",
+        c_wideopen_desc: "Elektronische muziek met brunch & beats door Disco Déjeuner en een vinyl market door The Rekord Klub.",
+        partners_label: "PARTNERS & SPONSORS",
+        partners_heading: "MET DANK AAN<br>WIE DIT MOGELIJK MAAKT.",
+        partners_intro: "Keizerfest 2026 wordt mede mogelijk gemaakt door onderstaande partners. Wil je ook bijdragen? Neem contact op.",
+        partner_featured_label: "TICKETING-PARTNER",
+        partner_featured_desc: "Ticketing en steuntickets voor Keizerfest 2026 lopen via Ticketbalie. Lokaal Belgisch ticketingplatform voor onafhankelijke evenementen.",
+        partner_featured_cta: "BEZOEK TICKETBALIE.COM",
+        nav_partners: "PARTNERS",
+        tickets_label: "HOE JE KAN HELPEN",
         tickets_heading: "STEUNTICKETS",
-        tickets_body: "Keizerfest is onafhankelijk. Je ticket helpt ons om de buurtwerking en artiesten eerlijk te ondersteunen. Kies je bijdrage.",
+        tickets_body: "Met jullie bijdrage maken we live optredens, workshops, kinderanimatie en een open plek voor iedereen mogelijk.",
+        tickets_disclaimer: "DIT IS GEEN TOEGANGSTICKET.<br>HET FESTIVAL BLIJFT GRATIS,<br>OOK ZONDER BIJDRAGE.",
         tickets_note: "Verkoop loopt via Ticketbalie. Externe link.",
-        tier_1_name: "BASIS STEUN",
+        tier_1_name: "KLEINE STEUN",
         tier_2_name: "FESTIVAL VRIEND",
-        tier_3_name: "KEIZER PATRØØN",
-        info_tickets_h: "TICKETS",
-        info_tickets_b: "Alleen online via Ticketbalie. Geen kassa. Steun het festival naar vermogen.",
-        info_transport_h: "TRANSPORT",
-        info_transport_b: "Geen autoparking. Beveiligde fietsparking of festival-shuttle vanaf Gent-Sint-Pieters.",
+        tier_3_name: "FESTIVALMAKER",
+        info_label: "PRAKTISCH",
+        info_when_h: "WANNEER",
+        info_when_b: "Donderdag 14, vrijdag 15 en zaterdag 16 mei 2026.",
+        info_where_h: "WAAR",
+        info_where_b: "Keizerpark, Gentbrugge. Toegang gratis. Geen autoparking — beveiligde fietsparking voorzien.",
         info_food_h: "ETEN & DRINKEN",
-        info_food_b: "100% vegi en lokaal. Eigen drinkbus welkom. Cashless via polsbandje.",
+        info_food_b: "Lokale standjes en drank. Eigen drinkbus welkom. Cashless via polsbandje.",
         info_access_h: "TOEGANKELIJKHEID",
-        info_access_b: "Rolstoeltoegankelijk. Prikkelarme zone achter main stage. Assistentiehonden welkom.",
+        info_access_b: "Rolstoeltoegankelijk. Prikkelarme zone. Assistentiehonden welkom.",
+        footer_steun: "Steun ons via Ticketbalie ↗",
         footer_rights: "© 2026 Alle rechten voorbehouden"
       },
       en: {
-        nav_tickets: "SUPPORT TICKETS",
-        hero_presented_by: "PRESENTED BY HIP HOP HOORAY × B*TCH DON'T KILL MY VIBE × WIDE OPEN",
-        hero_dates: "14 — 16 MAY 2026",
-        intro: "A three-day neighbourhood festival rooted in the concrete and green of Gentbrugge. No marketing talk — just music, community, and raw abandon. Each of the three days curated by local pioneers.",
-        d1_presents: "HIP HOP HOORAY PRESENTS",
-        d1_when: "THU 14.05.2026 · KEIZERPARK GHENT",
-        d1_sub_1: "Breakdance Battle for Kids by Together We Stand",
-        d1_sub_2: "Graffiti Jam & Workshops by Wallin'",
-        d1_sub_3: "Skate Jam by Curb Skateshop",
-        d2_presents: "B*TCH, DON'T KILL MY VIBE PRESENTS",
-        d2_when: "FRI 15.05.2026 · KEIZERPARK GHENT",
-        d2_sub_1: "Creators' Market by Stadsmakers",
-        d2_sub_2: "Yoga in the Park by Journey Of Yoga",
-        d2_note: "FOR THE COMMUNITY.<br>FREE BIKE PARKING.",
-        d3_presents: "WIDE OPEN PRESENTS",
-        d3_when: "SAT 16.05.2026 · KEIZERPARK GHENT",
-        d3_sub_1: "Brunch & Beats by Disco Déjeuner",
-        d3_sub_2: "Vinyl Market by The Rekord Klub",
-        lineup_label: "A—Z LINEUP",
-        lineup_label_2: "A—Z LINEUP",
-        lineup_label_3: "A—Z LINEUP",
-        sub_events_label: "SIDE PROGRAM",
-        sub_events_label_2: "SIDE PROGRAM",
-        sub_events_label_3: "SIDE PROGRAM",
+        nav_concepten: "CONCEPTS",
+        nav_about: "ABOUT",
+        nav_waarom: "WHY SUPPORT",
+        nav_praktisch: "PRACTICAL",
+        nav_steun: "SUPPORT US",
+        cta_steun_ons: "SUPPORT US",
+        cta_steun_ons_2: "SUPPORT US",
+        hero_eyebrow: "KEIZERFEST 2026 · KEIZERPARK GHENT · 14 — 16 MAY",
+        hero_eyebrow_right: "BY AND FOR THE CITY",
+        hero_kicker: "THIS YEAR WITHOUT CITY OF GHENT",
+        hero_headline: "THIS YEAR WE RECEIVE<br>NO FINANCIAL SUPPORT<br>FROM THE CITY OF GHENT.",
+        hero_subline: "So we're asking those who can spare it for support. The festival stays free for everyone.",
+        intro_label: "WHAT IS KEIZERFEST?",
+        intro_main: "Keizerfest is a free, three-day city festival in Keizerpark, Ghent — where music, sport, art and community come together.",
+        intro_concepts: "From urban culture and international acts to yoga in the park, kids' programmes and creative workshops. With four concepts — Back2Scratch, B*tch Don't Kill My Vibe, Wallhala and Wide Open — we make space for meeting, expression and talent.",
+        intro_outro: "EVERYONE IS WELCOME.<br>EVERYTHING IS FREE.",
+        origin_label: "WHERE WE COME FROM",
+        origin_heading: "BY AND<br>FOR THE CITY",
+        origin_p1: "What started as a small block party grew into a multi-day city festival that brings thousands of people together in Keizerpark every year.",
+        origin_p2: "Today we keep building an open, inclusive and creative space where young people, neighbours, artists and makers meet each other.",
+        origin_p3: "Not a commercial festival. No hidden agenda. A shared space — by and for the city.",
+        activities_label: "WHAT WE OFFER",
+        activities_heading: "THREE DAYS.<br>ONE PARK.<br>A LOT TO TAKE IN.",
+        act_1_h: "LIVE MUSIC",
+        act_1_b: "Local and international.",
+        act_2_h: "DJ SETS & DANCING",
+        act_2_b: "From scratch to techno.",
+        act_3_h: "GRAFFITI & WORKSHOPS",
+        act_3_b: "Creative maker zones.",
+        act_4_h: "SKATE & BREAKDANCE",
+        act_4_b: "Sport in the park.",
+        act_5_h: "YOGA & WELLBEING",
+        act_5_b: "Between the trees.",
+        act_6_h: "KIDS PROGRAMME",
+        act_6_b: "And theatre for the little ones.",
+        act_7_h: "MAKERS MARKET",
+        act_7_b: "Vinyl and local work.",
+        act_8_h: "CLOSET SALE",
+        act_8_b: "Neighbourhood initiatives.",
+        why_label: "WHY WE'RE ASKING FOR SUPPORT",
+        why_heading: "KEIZERFEST IS<br>FULLY FREE.<br>AND WE WANT TO<br>KEEP IT THAT WAY.",
+        why_p1: "This year we receive no financial support from the City of Ghent. So we're counting on visitors who can contribute.",
+        why_p2: "Your support goes directly to fair pay for artists, to workshops and activities, to build and production, and to keeping the festival accessible.",
+        why_p3: "NO BIG PROFITS.<br>NO HIDDEN AGENDA.<br>A COMMUNITY MAKING SOMETHING POSSIBLE.",
+        why_disclaimer: "The festival stays free and accessible for everyone, even without a contribution.",
+        concepts_label: "THE CONCEPTS",
+        concepts_heading: "FOUR CREWS.<br>ONE PARK.",
+        concepts_intro: "Four collectives each curate their own programme. Together they make three days of Keizerfest.",
+        day1_title: "DAY 01 — THURSDAY 14 MAY",
+        day1_pill: "URBAN CULTURE & FAMILY",
+        day2_title: "DAY 02 — FRIDAY 15 MAY",
+        day2_pill: "FEMALE-LED PLATEAU",
+        day3_title: "DAY 03 — SATURDAY 16 MAY",
+        day3_pill: "ELECTRONIC",
+        c_b2s_desc: "Hip hop, scratch and skate jam — graffiti workshops, breakdance and a free festival in the evening.",
+        c_wallhala_desc: "Kids' theatre, bouncy castle, graffiti & sticker workshops, face painting and silent disco — a day for the little ones and the neighbourhood.",
+        c_bdkmv_desc: "Female-curated plateau with live acts, a creators' market by Stadsmakers and yoga in the park by Journey of Yoga.",
+        c_wideopen_desc: "Electronic music with brunch & beats by Disco Déjeuner and a vinyl market by The Rekord Klub.",
+        partners_label: "PARTNERS & SPONSORS",
+        partners_heading: "WITH THANKS TO<br>EVERYONE WHO MAKES THIS POSSIBLE.",
+        partners_intro: "Keizerfest 2026 is made possible by the partners below. Want to support too? Get in touch.",
+        partner_featured_label: "TICKETING PARTNER",
+        partner_featured_desc: "Ticketing and support tickets for Keizerfest 2026 are handled by Ticketbalie — a local Belgian ticketing platform for independent events.",
+        partner_featured_cta: "VISIT TICKETBALIE.COM",
+        nav_partners: "PARTNERS",
+        tickets_label: "HOW YOU CAN HELP",
         tickets_heading: "SUPPORT TICKETS",
-        tickets_body: "Keizerfest is independent. Your ticket helps us pay artists fairly and keep the festival rooted in the neighbourhood. Pick your contribution.",
+        tickets_body: "Your contribution makes live shows, workshops, the kids' programme and an open space for everyone possible.",
+        tickets_disclaimer: "THIS IS NOT AN ENTRY TICKET.<br>THE FESTIVAL STAYS FREE,<br>EVEN WITHOUT A CONTRIBUTION.",
         tickets_note: "Sales handled by Ticketbalie. External link.",
-        tier_1_name: "BASIC SUPPORT",
+        tier_1_name: "SMALL SUPPORT",
         tier_2_name: "FESTIVAL FRIEND",
-        tier_3_name: "KEIZER PATRON",
-        info_tickets_h: "TICKETS",
-        info_tickets_b: "Online only via Ticketbalie. No box office. Pay what you can to support the festival.",
-        info_transport_h: "TRANSPORT",
-        info_transport_b: "No car parking. Secure bike parking or festival shuttle from Gent-Sint-Pieters.",
+        tier_3_name: "FESTIVAL MAKER",
+        info_label: "PRACTICAL",
+        info_when_h: "WHEN",
+        info_when_b: "Thursday 14, Friday 15 and Saturday 16 May 2026.",
+        info_where_h: "WHERE",
+        info_where_b: "Keizerpark, Gentbrugge. Free entry. No car parking — secure bike parking provided.",
         info_food_h: "FOOD & DRINK",
-        info_food_b: "100% vegetarian and local. Bring your own water bottle. Cashless via wristband.",
+        info_food_b: "Local stands and drinks. Bring your own water bottle. Cashless via wristband.",
         info_access_h: "ACCESSIBILITY",
-        info_access_b: "Wheelchair accessible. Low-stimulus zone behind the main stage. Service dogs welcome.",
+        info_access_b: "Wheelchair accessible. Low-stimulus zone. Service dogs welcome.",
+        footer_steun: "Support us via Ticketbalie ↗",
         footer_rights: "© 2026 All rights reserved"
       },
       fr: {
-        nav_tickets: "BILLETS SOLIDAIRES",
-        hero_presented_by: "PRÉSENTÉ PAR HIP HOP HOORAY × B*TCH DON'T KILL MY VIBE × WIDE OPEN",
-        hero_dates: "14 — 16 MAI 2026",
-        intro: "Un festival de quartier de trois jours, ancré dans le béton et la verdure de Gentbrugge. Pas de baratin marketing — juste de la musique, du collectif et de l'énergie brute. Chaque jour confié à des pionniers locaux.",
-        d1_presents: "HIP HOP HOORAY PRESENTS",
-        d1_when: "JEU 14.05.2026 · KEIZERPARK GAND",
-        d1_sub_1: "Breakdance Battle for Kids par Together We Stand",
-        d1_sub_2: "Graffiti Jam & Workshops par Wallin'",
-        d1_sub_3: "Skate Jam par Curb Skateshop",
-        d2_presents: "B*TCH, DON'T KILL MY VIBE PRESENTS",
-        d2_when: "VEN 15.05.2026 · KEIZERPARK GAND",
-        d2_sub_1: "Creators' Market par Stadsmakers",
-        d2_sub_2: "Yoga in the Park par Journey Of Yoga",
-        d2_note: "POUR LE QUARTIER.<br>PARKING VÉLO GRATUIT.",
-        d3_presents: "WIDE OPEN PRESENTS",
-        d3_when: "SAM 16.05.2026 · KEIZERPARK GAND",
-        d3_sub_1: "Brunch & Beats par Disco Déjeuner",
-        d3_sub_2: "Vinyl Market par The Rekord Klub",
-        lineup_label: "LINEUP A—Z",
-        lineup_label_2: "LINEUP A—Z",
-        lineup_label_3: "LINEUP A—Z",
-        sub_events_label: "PROGRAMME OFF",
-        sub_events_label_2: "PROGRAMME OFF",
-        sub_events_label_3: "PROGRAMME OFF",
+        nav_concepten: "CONCEPTS",
+        nav_about: "À PROPOS",
+        nav_waarom: "POURQUOI NOUS SOUTENIR",
+        nav_praktisch: "INFOS PRATIQUES",
+        nav_steun: "SOUTENEZ-NOUS",
+        cta_steun_ons: "SOUTENEZ-NOUS",
+        cta_steun_ons_2: "SOUTENEZ-NOUS",
+        hero_eyebrow: "KEIZERFEST 2026 · KEIZERPARK GAND · 14 — 16 MAI",
+        hero_eyebrow_right: "PAR ET POUR LA VILLE",
+        hero_kicker: "CETTE ANNÉE SANS LA VILLE DE GAND",
+        hero_headline: "CETTE ANNÉE NOUS NE RECEVONS<br>AUCUN SOUTIEN FINANCIER<br>DE LA VILLE DE GAND.",
+        hero_subline: "Nous demandons donc un coup de main à celles et ceux qui peuvent. Le festival reste gratuit pour tout le monde.",
+        intro_label: "QU'EST-CE QUE KEIZERFEST ?",
+        intro_main: "Keizerfest est un festival urbain gratuit de trois jours au Keizerpark à Gand, où la musique, le sport, l'art et la communauté se rencontrent.",
+        intro_concepts: "De la culture urbaine et des artistes internationaux au yoga dans le parc, en passant par les ateliers créatifs et l'animation enfants. Avec quatre concepts — Back2Scratch, B*tch Don't Kill My Vibe, Wallhala et Wide Open — on crée un espace pour la rencontre, l'expression et les talents.",
+        intro_outro: "TOUT LE MONDE EST BIENVENU.<br>TOUT EST GRATUIT.",
+        origin_label: "D'OÙ ON VIENT",
+        origin_heading: "PAR ET<br>POUR LA VILLE",
+        origin_p1: "Ce qui a commencé comme une petite block party est devenu un festival urbain de plusieurs jours qui rassemble chaque année des milliers de personnes au Keizerpark.",
+        origin_p2: "On continue à construire un espace ouvert, inclusif et créatif où jeunes, voisins, artistes et créateurs se croisent.",
+        origin_p3: "Pas un festival commercial. Pas d'agenda caché. Un espace partagé — par et pour la ville.",
+        activities_label: "CE QU'ON PROPOSE",
+        activities_heading: "TROIS JOURS.<br>UN PARC.<br>BEAUCOUP À VIVRE.",
+        act_1_h: "MUSIQUE LIVE",
+        act_1_b: "Local et international.",
+        act_2_h: "DJ SETS & DANSE",
+        act_2_b: "Du scratch à la techno.",
+        act_3_h: "GRAFFITI & ATELIERS",
+        act_3_b: "Zones créatives.",
+        act_4_h: "SKATE & BREAKDANCE",
+        act_4_b: "Sport dans le parc.",
+        act_5_h: "YOGA & BIEN-ÊTRE",
+        act_5_b: "Entre les arbres.",
+        act_6_h: "ANIMATION ENFANTS",
+        act_6_b: "Et théâtre pour les petits.",
+        act_7_h: "MARCHÉ DES MAKERS",
+        act_7_b: "Vinyle et création locale.",
+        act_8_h: "CLOSET SALE",
+        act_8_b: "Initiatives du quartier.",
+        why_label: "POURQUOI ON DEMANDE VOTRE SOUTIEN",
+        why_heading: "KEIZERFEST EST<br>ENTIÈREMENT GRATUIT.<br>ET ON VEUT QUE<br>ÇA RESTE COMME ÇA.",
+        why_p1: "Cette année, nous ne recevons aucun soutien financier de la Ville de Gand. On compte donc sur les visiteurs qui peuvent contribuer.",
+        why_p2: "Votre soutien va directement aux cachets justes pour les artistes, aux ateliers et activités, au montage et à la production, et à garder le festival accessible.",
+        why_p3: "PAS DE GROS BÉNÉFICES.<br>PAS D'AGENDA CACHÉ.<br>UNE COMMUNAUTÉ QUI REND ÇA POSSIBLE.",
+        why_disclaimer: "Le festival reste gratuit et accessible à tous, même sans contribution.",
+        concepts_label: "LES CONCEPTS",
+        concepts_heading: "QUATRE CREWS.<br>UN PARC.",
+        concepts_intro: "Quatre collectifs proposent chacun leur programme. Ensemble, ils font les trois jours de Keizerfest.",
+        day1_title: "JOUR 01 — JEUDI 14 MAI",
+        day1_pill: "CULTURE URBAINE & FAMILLE",
+        day2_title: "JOUR 02 — VENDREDI 15 MAI",
+        day2_pill: "PLATEAU FÉMININ",
+        day3_title: "JOUR 03 — SAMEDI 16 MAI",
+        day3_pill: "ÉLECTRONIQUE",
+        c_b2s_desc: "Hip hop, scratch et skate jam — ateliers graffiti, breakdance et un festival gratuit en soirée.",
+        c_wallhala_desc: "Théâtre jeune public, château gonflable, ateliers graffiti & stickers, maquillage et silent disco — une journée pour les plus petits et le quartier.",
+        c_bdkmv_desc: "Plateau curé par des femmes avec des concerts, un marché des makers par Stadsmakers et du yoga dans le parc par Journey of Yoga.",
+        c_wideopen_desc: "Musique électronique avec brunch & beats par Disco Déjeuner et un marché vinyle par The Rekord Klub.",
+        partners_label: "PARTENAIRES & SPONSORS",
+        partners_heading: "MERCI À CELLES ET CEUX<br>QUI RENDENT TOUT CECI POSSIBLE.",
+        partners_intro: "Keizerfest 2026 est rendu possible par les partenaires ci-dessous. Envie de contribuer aussi ? Contactez-nous.",
+        partner_featured_label: "PARTENAIRE BILLETTERIE",
+        partner_featured_desc: "La billetterie et les billets solidaires pour Keizerfest 2026 sont gérés par Ticketbalie — plateforme belge locale dédiée aux événements indépendants.",
+        partner_featured_cta: "VISITER TICKETBALIE.COM",
+        nav_partners: "PARTENAIRES",
+        tickets_label: "COMMENT AIDER",
         tickets_heading: "BILLETS SOLIDAIRES",
-        tickets_body: "Keizerfest est indépendant. Ton billet permet de payer correctement les artistes et de garder le festival ancré dans le quartier. Choisis ta contribution.",
+        tickets_body: "Votre contribution rend possibles les concerts, les ateliers, l'animation enfants et un lieu ouvert pour tout le monde.",
+        tickets_disclaimer: "CECI N'EST PAS UN BILLET D'ENTRÉE.<br>LE FESTIVAL RESTE GRATUIT,<br>MÊME SANS CONTRIBUTION.",
         tickets_note: "Vente gérée par Ticketbalie. Lien externe.",
-        tier_1_name: "SOUTIEN DE BASE",
+        tier_1_name: "PETIT SOUTIEN",
         tier_2_name: "AMI DU FESTIVAL",
-        tier_3_name: "KEIZER MÉCÈNE",
-        info_tickets_h: "BILLETS",
-        info_tickets_b: "En ligne uniquement via Ticketbalie. Pas de billetterie sur place. Soutiens à hauteur de tes moyens.",
-        info_transport_h: "TRANSPORT",
-        info_transport_b: "Pas de parking voiture. Parking vélo sécurisé ou navette festival depuis Gent-Sint-Pieters.",
+        tier_3_name: "BÂTISSEUR DU FESTIVAL",
+        info_label: "INFOS PRATIQUES",
+        info_when_h: "QUAND",
+        info_when_b: "Jeudi 14, vendredi 15 et samedi 16 mai 2026.",
+        info_where_h: "OÙ",
+        info_where_b: "Keizerpark, Gentbrugge. Entrée gratuite. Pas de parking voiture — parking vélo sécurisé prévu.",
         info_food_h: "MANGER & BOIRE",
-        info_food_b: "100% végétarien et local. Apporte ta gourde. Sans cash, via bracelet.",
+        info_food_b: "Stands locaux et boissons. Apportez votre gourde. Sans cash, via bracelet.",
         info_access_h: "ACCESSIBILITÉ",
-        info_access_b: "Accessible aux fauteuils roulants. Zone calme derrière la scène principale. Chiens d'assistance bienvenus.",
+        info_access_b: "Accessible aux fauteuils roulants. Zone calme. Chiens d'assistance bienvenus.",
+        footer_steun: "Soutenez-nous via Ticketbalie ↗",
         footer_rights: "© 2026 Tous droits réservés"
       }
     };
