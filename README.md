@@ -23,7 +23,7 @@ vercel --prod --yes
 
 ## Environment variables (Vercel project settings)
 
-The contact form needs Supabase credentials. Set these in
+The contact form just writes to Supabase — nothing else. Set these in
 **Vercel → Project → Settings → Environment Variables** for *Production*
 (and optionally *Preview*):
 
@@ -31,13 +31,11 @@ The contact form needs Supabase credentials. Set these in
 | ----------------------------- | -------- | ------------------------------------------------------------------- |
 | `SUPABASE_URL`                | yes      | e.g. `https://xxxx.supabase.co`                                     |
 | `SUPABASE_SERVICE_ROLE_KEY`   | yes      | service-role JWT — server-side only, never expose to the client     |
-| `CONTACT_NOTIFY_EMAIL`        | no       | if set, every submission also gets emailed here                     |
-| `RESEND_API_KEY`              | no       | required if `CONTACT_NOTIFY_EMAIL` is set                           |
-| `RESEND_FROM`                 | no       | e.g. `Keizerfest <noreply@mail.supershift.work>`                    |
 
-Without `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` the form returns a
-503 "Contactformulier nog niet geconfigureerd" message — the rest of the
-site keeps working.
+Without these set, the form returns a 503 "Contactformulier nog niet
+geconfigureerd" message — the rest of the site keeps working. New
+submissions land in `public.contact_submissions`; read them in the
+Supabase Table Editor.
 
 ## Database setup (one-time)
 

@@ -1,16 +1,11 @@
 // Vercel serverless function: receive contact form submissions and save to Supabase.
 //
-// Required environment variables (set in Vercel project Settings → Environment Variables):
+// Required environment variables (Vercel project Settings → Environment Variables):
 //   SUPABASE_URL              e.g. https://xxxx.supabase.co
-//   SUPABASE_SERVICE_ROLE_KEY service-role JWT (server-side only — DO NOT expose to client)
+//   SUPABASE_SERVICE_ROLE_KEY service-role JWT (server-side only — never expose to client)
 //
-// Optional:
-//   CONTACT_NOTIFY_EMAIL  if set, an email is sent here via Resend
-//   RESEND_API_KEY        Resend API key (only used if CONTACT_NOTIFY_EMAIL is set)
-//   RESEND_FROM           e.g. "Keizerfest <noreply@mail.supershift.work>"
-//
-// Run the SQL in /sql/001_contact_submissions.sql once on the Supabase project
-// before this endpoint will accept inserts.
+// Run sql/001_contact_submissions.sql on the Supabase project once before
+// this endpoint will accept inserts.
 
 export const config = { runtime: 'edge' };
 
@@ -41,9 +36,8 @@ export default async function handler(req) {
     if (typeof body[k] === 'string') data[k] = body[k].trim();
   }
 
-  // Honeypot.
+  // Honeypot — bots fill this. Pretend success so they don't probe further.
   if (typeof body.website === 'string' && body.website.trim() !== '') {
-    // Pretend success so bots don't probe.
     return new Response(JSON.stringify({ ok: true }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
@@ -102,36 +96,6 @@ export default async function handler(req) {
     const text = await insertRes.text().catch(() => '');
     console.error('contact: Supabase insert failed', insertRes.status, text);
     return bad(502, 'Kon je bericht niet opslaan.');
-  }
-
-  // Optional: notify via Resend.
-  const notifyTo = process.env.CONTACT_NOTIFY_EMAIL;
-  const resendKey = process.env.RESEND_API_KEY;
-  const resendFrom = process.env.RESEND_FROM;
-  if (notifyTo && resendKey && resendFrom) {
-    try {
-      await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${resendKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          from: resendFrom,
-          to: [notifyTo],
-          reply_to: data.email,
-          subject: `[Keizerfest contact] ${data.subject || data.name}`,
-          text:
-            `Van: ${data.name} <${data.email}>\n` +
-            (data.subject ? `Onderwerp: ${data.subject}\n` : '') +
-            `Locale: ${data.locale || 'nl'}\n\n` +
-            data.message,
-        }),
-      });
-    } catch (err) {
-      // Non-fatal: insert already succeeded.
-      console.warn('contact: notify email failed', err);
-    }
   }
 
   return new Response(JSON.stringify({ ok: true }), {
