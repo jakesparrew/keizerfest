@@ -139,7 +139,6 @@
         <a href="#concepten" class="display text-lg tracking-wider hover:underline underline-offset-4" data-i18n="nav_concepten">EVENEMENTEN</a>
         <a href="#tickets" class="display text-lg tracking-wider hover:underline underline-offset-4" data-i18n="nav_tickets_section">STEUNTICKETS</a>
         <a href="#praktisch" class="display text-lg tracking-wider hover:underline underline-offset-4" data-i18n="nav_praktisch">PRAKTISCH</a>
-        <a href="#contact" class="display text-lg tracking-wider hover:underline underline-offset-4" data-i18n="nav_contact">CONTACT</a>
         <a href="#partners" class="display text-lg tracking-wider hover:underline underline-offset-4" data-i18n="nav_partners">PARTNERS</a>
       </div>
 
@@ -449,47 +448,6 @@
               style="filter: grayscale(0.4) contrast(1.05);">
             </iframe>
           </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact" class="px-6 lg:px-12 py-24 md:py-32 border-b border-black bg-[var(--cream)]">
-        <div class="max-w-5xl mx-auto grid md:grid-cols-12 gap-10 md:gap-16 items-start">
-          <div class="md:col-span-5">
-            <p class="text-xs font-bold tracking-[0.2em] uppercase mb-6" data-i18n="contact_label">CONTACT</p>
-            <h2 class="text-5xl md:text-7xl mb-6 leading-[0.92]" data-i18n-html="contact_heading">EEN VRAAG?<br>SCHRIJF ONS.</h2>
-            <p class="text-base md:text-lg mb-2" data-i18n="contact_body">Pers, partners, vrijwilligers, programma &mdash; kort bericht, we lezen alles.</p>
-            <p class="text-sm opacity-70"><a href="mailto:hello@madcat.be" class="hover:underline">hello@madcat.be</a></p>
-          </div>
-          <form id="contact-form" class="md:col-span-7 w-full grid gap-4" novalidate>
-            <div class="grid sm:grid-cols-2 gap-4">
-              <label class="flex flex-col gap-2">
-                <span class="text-xs font-bold tracking-[0.2em] uppercase" data-i18n="contact_name">NAAM</span>
-                <input type="text" name="name" required maxlength="120" class="bg-transparent border-b border-black/30 focus:border-black outline-none py-2 text-base" />
-              </label>
-              <label class="flex flex-col gap-2">
-                <span class="text-xs font-bold tracking-[0.2em] uppercase" data-i18n="contact_email">E-MAIL</span>
-                <input type="email" name="email" required maxlength="160" class="bg-transparent border-b border-black/30 focus:border-black outline-none py-2 text-base" />
-              </label>
-            </div>
-            <label class="flex flex-col gap-2">
-              <span class="text-xs font-bold tracking-[0.2em] uppercase" data-i18n="contact_subject">ONDERWERP</span>
-              <input type="text" name="subject" maxlength="160" class="bg-transparent border-b border-black/30 focus:border-black outline-none py-2 text-base" />
-            </label>
-            <label class="flex flex-col gap-2">
-              <span class="text-xs font-bold tracking-[0.2em] uppercase" data-i18n="contact_message">BERICHT</span>
-              <textarea name="message" required rows="5" maxlength="4000" class="bg-transparent border border-black/30 focus:border-black outline-none p-3 text-base resize-y"></textarea>
-            </label>
-            <!-- honeypot -->
-            <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
-            <div class="flex items-center justify-between flex-wrap gap-4 mt-2">
-              <p id="contact-status" class="text-sm" role="status" aria-live="polite"></p>
-              <button type="submit" class="btn-steun" id="contact-submit">
-                <span data-i18n="contact_submit">VERSTUREN</span>
-                <iconify-icon icon="lucide:arrow-up-right"></iconify-icon>
-              </button>
-            </div>
-          </form>
         </div>
       </section>
 
@@ -1071,49 +1029,6 @@
       loadCrowdfunding();
     }, 60_000);
 
-    // ---- Contact form ----
-    const contactCopy = {
-      nl: { sending: 'Versturen…', ok: 'Bedankt — we hebben je bericht ontvangen.', err: 'Er ging iets mis. Probeer opnieuw of mail rechtstreeks.' },
-      en: { sending: 'Sending…', ok: 'Thanks — we received your message.', err: 'Something went wrong. Try again or email us directly.' },
-      fr: { sending: 'Envoi…', ok: 'Merci — votre message a bien été reçu.', err: 'Un souci est survenu. Réessayez ou écrivez-nous directement.' },
-    };
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-      contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const lang = (document.documentElement.lang || 'nl').toLowerCase();
-        const txt = contactCopy[lang] || contactCopy.nl;
-        const status = document.getElementById('contact-status');
-        const btn = document.getElementById('contact-submit');
-        const data = Object.fromEntries(new FormData(contactForm));
-        // Honeypot — bots fill this. Silently treat as success.
-        if (data.website) {
-          status.textContent = txt.ok;
-          contactForm.reset();
-          return;
-        }
-        status.textContent = txt.sending;
-        btn.disabled = true;
-        try {
-          const res = await fetch('/api/contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: data.name, email: data.email, subject: data.subject, message: data.message, locale: lang }),
-          });
-          if (!res.ok) {
-            const body = await res.json().catch(() => ({}));
-            throw new Error(body.error || ('HTTP ' + res.status));
-          }
-          status.textContent = txt.ok;
-          contactForm.reset();
-        } catch (err) {
-          console.warn('contact submit failed:', err.message);
-          status.textContent = txt.err;
-        } finally {
-          btn.disabled = false;
-        }
-      });
-    }
   </script>
 </body>
 </html>

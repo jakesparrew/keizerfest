@@ -139,7 +139,6 @@
         <a href="/#concepten" class="display text-lg tracking-wider hover:underline underline-offset-4" data-i18n="nav_concepten">EVENEMENTEN</a>
         <a href="/#tickets" class="display text-lg tracking-wider hover:underline underline-offset-4" data-i18n="nav_tickets_section">STEUNTICKETS</a>
         <a href="/#praktisch" class="display text-lg tracking-wider hover:underline underline-offset-4" data-i18n="nav_praktisch">PRAKTISCH</a>
-        <a href="/#contact" class="display text-lg tracking-wider hover:underline underline-offset-4" data-i18n="nav_contact">CONTACT</a>
         <a href="/#partners" class="display text-lg tracking-wider hover:underline underline-offset-4" data-i18n="nav_partners">PARTNERS</a>
       </div>
 
@@ -804,49 +803,6 @@
       loadCrowdfunding();
     }, 60_000);
 
-    // ---- Contact form ----
-    const contactCopy = {
-      nl: { sending: 'Versturen…', ok: 'Bedankt — we hebben je bericht ontvangen.', err: 'Er ging iets mis. Probeer opnieuw of mail rechtstreeks.' },
-      en: { sending: 'Sending…', ok: 'Thanks — we received your message.', err: 'Something went wrong. Try again or email us directly.' },
-      fr: { sending: 'Envoi…', ok: 'Merci — votre message a bien été reçu.', err: 'Un souci est survenu. Réessayez ou écrivez-nous directement.' },
-    };
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-      contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const lang = (document.documentElement.lang || 'nl').toLowerCase();
-        const txt = contactCopy[lang] || contactCopy.nl;
-        const status = document.getElementById('contact-status');
-        const btn = document.getElementById('contact-submit');
-        const data = Object.fromEntries(new FormData(contactForm));
-        // Honeypot — bots fill this. Silently treat as success.
-        if (data.website) {
-          status.textContent = txt.ok;
-          contactForm.reset();
-          return;
-        }
-        status.textContent = txt.sending;
-        btn.disabled = true;
-        try {
-          const res = await fetch('/api/contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: data.name, email: data.email, subject: data.subject, message: data.message, locale: lang }),
-          });
-          if (!res.ok) {
-            const body = await res.json().catch(() => ({}));
-            throw new Error(body.error || ('HTTP ' + res.status));
-          }
-          status.textContent = txt.ok;
-          contactForm.reset();
-        } catch (err) {
-          console.warn('contact submit failed:', err.message);
-          status.textContent = txt.err;
-        } finally {
-          btn.disabled = false;
-        }
-      });
-    }
   </script>
 </body>
 </html>
