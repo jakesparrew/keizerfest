@@ -1,0 +1,46 @@
+name: Bump deploy.md after Jerom pushes
+on:
+  push:
+    branches: [main]
+concurrency:
+  group: deploy-bump
+  cancel-in-progress: false
+jobs:
+  bump:
+    # Only react to pushes authored by Jerom.
+    # Any push by anyone else (including the bot itself) is ignored,
+    # which prevents infinite loops.
+    if: github.actor == 'jeromverschoote'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Write a random word into public/deploy.md
+        run: |
+          set -euo pipefail
+          WORDS=(one two three four five six seven eight nine ten \
+                 alpha bravo charlie delta echo foxtrot golf hotel \
+                 apple banana cherry mango peach grape lemon lime \
+                 river mountain forest ocean desert canyon meadow)
+          RANDOM_WORD="${WORDS[$RANDOM % ${#WORDS[@]}]}"
+          mkdir -p public
+          echo "$RANDOM_WORD" > public/deploy.md
+          echo "New content: $RANDOM_WORD"
+      - name: Commit and push (if changed)
+        run: |
+          set -euo pipefail
+          git config user.name  "jakesparrew"
+          git config user.email "gaetanjansseune@gmail.com"
+          if git diff --quiet -- public/deploy.md; then
+            echo "No change in public/deploy.md, nothing to commit."
+            exit 0
+          fi
+          git add public/deploy.md
+          git commit -m "chore(deploy): bump after @${{ github.actor }} push"
+          git push origin HEAD:main
