@@ -895,7 +895,10 @@
       eventId: '1883ded2-e959-4696-b17a-f7b852da36ab',
       token: '1fffb3ae-57c3-4eba-ac21-feaeefe1b20b',
       anonKey: '',
-      fallbackUrl: 'https://www.ticketbalie.com/keizerfest'
+      fallbackUrl: 'https://www.ticketbalie.com/keizerfest',
+      // Extra euros to add to the displayed total (e.g. cash/offline donations
+      // collected outside Ticketbalie). Keep in sync with waarom.html.
+      offlineEuros: 2810.92
     };
 
     // Open the Ticketbalie support dialog. Falls back to the external page if
@@ -959,7 +962,8 @@
         //     top_contributors:[{name, amount_cents, ...}] }
         const cf = raw.crowdfunding || {};
         const top = raw.top_contributors || [];
-        const gathered = Number(cf.raised_cents ?? 0) / 100;
+        const gathered = Number(cf.raised_cents ?? 0) / 100
+          + (Number(CROWDFUNDING.offlineEuros) || 0);
         const supporters = Number(cf.supporter_count ?? 0);
         const currency = cf.currency || 'EUR';
         const hasGoal = cf.goal_cents != null && Number(cf.goal_cents) > 0;
@@ -974,9 +978,8 @@
         const barWrap = document.getElementById('cf-bar')?.parentElement;
         if (hasGoal) {
           const goal = Number(cf.goal_cents) / 100;
-          const pct = Math.max(0, Math.min(100, cf.progress_percentage != null
-            ? Number(cf.progress_percentage)
-            : Math.round((gathered / goal) * 100)));
+          // Compute percentage locally so it reflects the offline top-up too.
+          const pct = Math.max(0, Math.min(100, Math.round((gathered / goal) * 100)));
           goalEl.textContent = fmtMoney(goal, currency);
           pctEl.textContent = pct;
           if (slashEl) slashEl.style.display = '';

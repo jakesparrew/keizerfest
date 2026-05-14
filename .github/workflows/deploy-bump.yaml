@@ -1,4 +1,4 @@
-name: Bump deploy.md after Jerom pushes
+name: Bump deploy.md after allowed pushes
 on:
   push:
     branches: [main]
@@ -7,10 +7,10 @@ concurrency:
   cancel-in-progress: false
 jobs:
   bump:
-    # Only react to pushes authored by Jerom.
+    # Only react to pushes from the allowlist below.
     # Any push by anyone else (including the bot itself) is ignored,
     # which prevents infinite loops.
-    if: github.actor == 'jeromverschoote'
+    if: contains(fromJSON('["jeromverschoote","atfbcs","achile"]'), github.actor)
     runs-on: ubuntu-latest
     permissions:
       contents: write
